@@ -1,6 +1,33 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+const Home = () => {
+  const router = useRouter();
+
+  // Initialize State
+  const [gender, setGender] = useState("");
+
+  // Handle gender
+  const handleGander = (gen) => {
+    if (gender === gen) {
+      localStorage.removeItem("gender");
+      setGender("");
+    } else {
+      localStorage.setItem("gender", gen);
+      setGender(gen);
+      router.push("/model");
+    }
+  };
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem("gender");
+    if (storedValue) {
+      setGender(storedValue);
+    }
+  }, []);
+
   return (
     <div
       className="w-screen h-screen bg-cover bg-center relative"
@@ -11,10 +38,20 @@ export default function Home() {
     >
       <div className="flex justify-between items-center py-8 px-6">
         <div className="flex items-center  md:gap-8 gap-4">
-          <h2 className="text-sm font-medium text-white cursor-pointer hover:text-black transition-colors duration-300">
+          <h2
+            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
+              gender === "female" ? "text-black" : "text-white"
+            }`}
+            onClick={() => handleGander("female")}
+          >
             FEMALE
           </h2>
-          <h2 className="text-sm font-medium text-white cursor-pointer hover:text-black  transition-colors duration-300">
+          <h2
+            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
+              gender === "male" ? "text-black" : "text-white"
+            }`}
+            onClick={() => handleGander("male")}
+          >
             MALE
           </h2>
         </div>
@@ -34,4 +71,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
