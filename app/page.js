@@ -32,24 +32,21 @@ const Home = () => {
     <div
       className="w-screen h-screen bg-cover bg-center relative"
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1679864458636-a910cea81155?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        backgroundImage: "url('/image/home.JPEG')",
       }}
     >
       <div className="flex justify-between items-center py-8 px-6">
         <div className="flex items-center  md:gap-8 gap-4">
           <h2
-            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
-              gender === "female" ? "text-black" : "text-white"
-            }`}
+            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "female" ? "text-black" : "text-white"
+              }`}
             onClick={() => handleGander("female")}
           >
             FEMALE
           </h2>
           <h2
-            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
-              gender === "male" ? "text-black" : "text-white"
-            }`}
+            className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "male" ? "text-black" : "text-white"
+              }`}
             onClick={() => handleGander("male")}
           >
             MALE

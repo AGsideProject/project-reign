@@ -108,7 +108,7 @@ export default function model() {
             <div className="w-3/4 md:w-72 lg:w-72 lg:mx-5 lg:mb-10" key={index}>
               <div
                 onClick={() => router.push(`/model/${index}?item=${item.url}`)}
-                className="w-full h-[75vh] lg:h-96  bg-blue-500 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black">
+                className="w-full h-[60vh] lg:h-96  bg-blue-500 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black">
                 <img
                   className="w-full h-full object-cover hover:scale-125 shadow-lg transition-transform duration-300 ease-in-out  "
                   src={item.url}
