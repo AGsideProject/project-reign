@@ -1,10 +1,12 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function model() {
   const [domLoaded, setDomLoaded] = useState(false);
   const [images, setImages] = useState([]);
   const [positions, setPositions] = useState([]);
+  const router = useRouter()
 
   async function fetchImage() {
     try {
@@ -104,7 +106,9 @@ export default function model() {
           return (
             //! standard
             <div className="w-3/4 md:w-72 lg:w-72 lg:mx-5 lg:mb-10" key={index}>
-              <div className="w-full h-[75vh] lg:h-96  bg-blue-500 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black">
+              <div
+                onClick={() => router.push(`/model/${index}?item=${item.url}`)}
+                className="w-full h-[75vh] lg:h-96  bg-blue-500 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black">
                 <img
                   className="w-full h-full object-cover hover:scale-125 shadow-lg transition-transform duration-300 ease-in-out  "
                   src={item.url}
