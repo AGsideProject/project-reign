@@ -33,17 +33,15 @@ const Header = () => {
       <div className="flex justify-between items-center py-6 px-7">
         <div className="flex items-center gap-8">
           <h2
-            className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-              gender === "female" ? "text-[#FF8C00]" : "text-black"
-            }`}
+            className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === "female" ? "text-[#FF8C00]" : "text-black"
+              }`}
             onClick={() => handleGander("female")}
           >
             FEMALE
           </h2>
           <h2
-            className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-              gender === "male" ? "text-[#FF8C00]" : "text-black"
-            }`}
+            className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === "male" ? "text-[#FF8C00]" : "text-black"
+              }`}
             onClick={() => handleGander("male")}
           >
             MALE
