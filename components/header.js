@@ -56,7 +56,7 @@ const Header = () => {
           <img
             src="/nextV2.svg"
             alt="Next.js logo"
-            className="md:h-8 md:w-36 w-28 h-6"
+            className="md:h-8 md:w-36 w-28 h-6 cursor-pointer"
             onClick={() => router.push("/")}
           />
 
