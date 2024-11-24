@@ -41,17 +41,15 @@ const Home = () => {
         <div className="flex justify-between items-center py-8 px-6">
           <div className="flex items-center  md:gap-8 gap-4">
             <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
-                gender === "female" ? "text-black" : "text-white"
-              }`}
+              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "female" ? "text-black" : "text-white"
+                }`}
               onClick={() => handleGander("female")}
             >
               FEMALE
             </h2>
             <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${
-                gender === "male" ? "text-black" : "text-white"
-              }`}
+              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "male" ? "text-black" : "text-white"
+                }`}
               onClick={() => handleGander("male")}
             >
               MALE
@@ -65,7 +63,7 @@ const Home = () => {
           </h2>
         </div>
 
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-fade animate-once animate-duration-[5500ms] animate-ease-in-out">
           <Image
             src="/next.svg"
             alt="Next.js logo"
