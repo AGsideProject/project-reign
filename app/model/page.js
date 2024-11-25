@@ -1,8 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import transition from "components/transition";
 
-export default function model() {
+const Model = () => {
   const [domLoaded, setDomLoaded] = useState(false);
   const [images, setImages] = useState([]);
   const [positions, setPositions] = useState([]);
@@ -126,7 +127,7 @@ export default function model() {
             <div className={`w-[85vw] md:w-72 lg:w-72 lg:mx-5 lg:mb-10 animate-fade-up animate-once animate-duration-[2500ms] animate-ease-in-out`} key={index}>
               <div
                 onClick={() => router.push(`/model/${index}?item=${item.url}`)}
-                className="w-full h-[60vh] lg:h-96 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black ">
+                className="w-full h-[60vh] lg:h-96 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black bg-blue-100">
                 <img
                   className="w-full h-full object-cover hover:scale-125 shadow-lg transition-transform duration-300 ease-in-out  "
                   src={item.url}
@@ -165,3 +166,6 @@ export default function model() {
     </>
   );
 }
+
+export default Model;
+// export default transition(Model);
