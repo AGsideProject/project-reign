@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef } from "react";
+import SmoothScrollParallax from "../SmoothParallaxScroll/page";
 
 export default function SmoothScrollHero (){
   return (
@@ -23,10 +24,11 @@ export default function SmoothScrollHero (){
       >
         {/* <Nav /> */}
         <Hero />
-        <Carousel/>
+        {/* <SmoothScrollParallax /> */}
+        {/* <Carousel/> */}
         {/* <Schedule /> */}
         {/* <Typewrite/> */}
-        <RevealLinks/>
+        {/* <RevealLinks/> */}
 
       </ReactLenis>
     </div>
@@ -60,7 +62,7 @@ const Hero = () => {
     >
       <CenterImage />
 
-      {/* <ParallaxImages /> */}
+      <ParallaxImages />
 
       <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-zinc-950/0 to-zinc-950" />
     </div>
@@ -93,7 +95,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage:"url('/image/home.JPEG')",
+        backgroundImage:"url('/image/1.JPG')",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}

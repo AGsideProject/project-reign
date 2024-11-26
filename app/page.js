@@ -65,7 +65,7 @@ const Home = () => {
 
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-fade animate-once animate-duration-[5500ms] animate-ease-in-out">
           <Image
-            src="/next.svg"
+            src="/reign_white.svg"
             alt="Next.js logo"
             width={460}
             height={32}
