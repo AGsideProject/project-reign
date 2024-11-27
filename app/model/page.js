@@ -1,24 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion, useInView, useAnimation } from 'framer-motion'
 
 export default function model() {
   const [domLoaded, setDomLoaded] = useState(false);
   const [images, setImages] = useState([]);
   const [positions, setPositions] = useState([]);
   const router = useRouter()
+  const { ref } = useInView("model")
 
-  async function fetchImage() {
-    try {
-      const response = await fetch(
-        "https://dummyjson.com/image/400x200/FFFFFF"
-      );
-      const blob = await response.blob();
-      console.log("Fetched image blob:", blob);
-    } catch (error) {
-      console.error("Error fetching image:", error);
-    }
-  }
 
   //! paralax
   // State to store mouse position for each image
@@ -107,36 +98,46 @@ export default function model() {
     ]);
     setPositions(new Array(14).fill({ x: 0, y: 0 }));
   }, []);
-
-  let baseNumber = "000";
   // Avoid rendering if not loaded on client
-  if (!domLoaded) return null;
-
-  let originalNumber = 10000;
-  let numberToAdd = 1;
-
-  let result = Number(numberToAdd.toString() + originalNumber.toString());
+  if (!domLoaded) return (<div className="h-screen w-screen bg-black">loading</div>);
 
   return (
     <>
-      <div className="flex justify-center flex-wrap gap-10 lg:gap-0 my-10">
+      <div ref={ref} className="flex justify-center flex-wrap gap-10 lg:gap-0 my-10">
         {images.map((item, index) => {
           return (
             //! standard
-            <div className={`w-[85vw] md:w-72 lg:w-72 lg:mx-5 lg:mb-10 animate-fade-up animate-once animate-duration-[2500ms] animate-ease-in-out`} key={index}>
-              <div
-                onClick={() => router.push(`/model/${index}?item=${item.url}`)}
-                className="w-full h-[60vh] lg:h-96 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black ">
-                <img
-                  className="w-full h-full object-cover hover:scale-125 shadow-lg transition-transform duration-300 ease-in-out  "
-                  src={item.url}
-                  alt="model1"
-                />
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 75 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              initial="hidden"
+              // animate="visible"
+              whileInView="visible"
+              transition={{ duration: 1, delay: 1 }}
+              // transition={{ duration: 0.5, delay: index * 0.2 }}
+              // ref={ref + index}
+              key={index}
+              viewport={{ once: true }}
+            >
+
+              <div className={`w-[85vw] md:w-72 lg:w-72 lg:mx-5 lg:mb-10`} key={index}>
+                <div
+                  onClick={() => router.push(`/model/${index}?item=${item.url}`)}
+                  className="w-full h-[60vh] lg:h-96 overflow-hidden inline-block hover:shadow-custom-lg transition-shadow	duration-300 shadow-black bg-slate-900 ">
+                  <img
+                    className="w-full h-full object-cover hover:scale-125 shadow-lg transition-transform duration-300 ease-in-out  "
+                    src={item.url}
+                    alt="model1"
+                  />
+                </div>
+                <div className="text-center mt-2 flex flex-col">
+                  <span className="text-lg ">model name</span>
+                </div>
               </div>
-              <div className="text-center mt-2 flex flex-col">
-                <span className="text-lg ">model name</span>
-              </div>
-            </div>
+
+            </motion.div>
             //! standard
 
             //! parallax
