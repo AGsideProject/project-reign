@@ -11,6 +11,116 @@ import 'styles/swiper.css';
 import { Pagination, Navigation } from 'swiper/modules'
 import Image from "next/image";
 
+import { motion, useTransform, useScroll } from "framer-motion";
+import { useRef } from "react";
+
+const HorizontalScrollCarousel = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+
+  return (
+    <section ref={targetRef} className="relative h-[300vh] bg-neutral-900">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <motion.div style={{ x }} className="flex gap-4">
+          {cards.map((card) => {
+            return <Card card={card} key={card.id} />;
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const Card = ({ card }) => {
+  return (
+    <div
+      key={card.id}
+      className="group relative h-[450px] w-[450px] overflow-hidden"
+    >
+      <div
+        style={{
+          backgroundImage: `url(${card.url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
+      ></div>
+      {/* <div className="absolute inset-0 z-10 grid place-content-center">
+        <p className="bg-gradient-to-br from-white/20 to-white/0 p-8 text-6xl font-black uppercase text-white backdrop-blur-lg">
+          {card.title}
+        </p>
+      </div> */}
+    </div>
+  );
+};
+
+const cards = [
+  {
+    url: "/image/5.jpg",
+    title: "Title 1",
+    id: 1,
+  },
+  {
+    url: "/image/6.jpg",
+    title: "Title 2",
+    id: 2,
+  },
+  {
+    url: "/image/7.JPG",
+    title: "Title 3",
+    id: 3,
+  },
+  {
+    url: "/image/8.JPEG",
+    title: "Title 4",
+    id: 4,
+  },
+  {
+    url: "/image/9.JPEG",
+    title: "Title 5",
+    id: 5,
+  },
+  {
+    url: "/image/10.JPG",
+    title: "Title 6",
+    id: 6,
+  },
+  {
+    url: "/image/11.JPG",
+    title: "Title 7",
+    id: 7,
+  },
+  {
+    url: "/image/12.JPG",
+    title: "Title 7",
+    id: 8,
+  },
+  {
+    url: "/image/13.JPG",
+    title: "Title 7",
+    id: 9,
+  },
+  {
+    url: "/image/14.JPG",
+    title: "Title 7",
+    id: 10,
+  },
+  {
+    url: "/image/15.jpg",
+    title: "Title 7",
+    id: 11,
+  },
+  {
+    url: "/image/16.JPEG",
+    title: "Title 7",
+    id: 12,
+  },
+];
+
 
 export default function ModelDetail({ _params }) {
   // console.log(_params, "_params")
@@ -38,22 +148,22 @@ export default function ModelDetail({ _params }) {
 
         <div className="flex flex-col gap-2 justify-center items-center w-[85vw] sm:w-[95vw] lg:w-[85vw] sm:flex-row sm:items-center sm:justify-around sm:flex-wrap sm:h-[50px] lg:gap-0 text-sm">
 
-          <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+          <div className="animate-fade-right animate-once animate-duration-[4000ms] animate-ease-in-out">
             <p> <span className="font-medium">HEIGHT</span>: 181 CM</p>
           </div>
-          <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+          <div className="animate-fade-right animate-once animate-duration-[3500ms] animate-ease-in-out">
             <p> <span className="font-medium">BUST</span>: 81 CM</p>
           </div>
           <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
             <p> <span className="font-medium">WAIST</span>: 62 CM</p>
           </div>
-          <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+          <div className="animate-fade-right animate-once animate-duration-[2500ms] animate-ease-in-out">
             <p> <span className="font-medium">HIPS</span>: 91 CM</p>
           </div>
-          <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+          <div className="animate-fade-right animate-once animate-duration-[2000ms] animate-ease-in-out">
             <p> <span className="font-medium">SHOE</span>: 8 US</p>
           </div>
-          <div className="animate-fade-right animate-once animate-duration-[2000ms] animate-ease-in-out">
+          <div className="animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out">
             <p> <span className="font-medium ">HAIR</span>: DARK BROWN</p>
           </div>
           <div className="animate-fade-right animate-once animate-duration-[1000ms] animate-ease-in-out">
@@ -316,6 +426,20 @@ export default function ModelDetail({ _params }) {
             </div>
           </SwiperSlide>
         </Swiper>
+      </div>
+
+      <div className="bg-neutral-800">
+        <div className="flex h-48 items-center justify-center">
+          <span className="font-semibold uppercase text-neutral-500">
+            POLAROIDS
+          </span>
+        </div>
+        <HorizontalScrollCarousel />
+        <div className="flex h-48 items-center justify-center">
+          <span className="font-semibold uppercase text-neutral-500">
+            Scroll up
+          </span>
+        </div>
       </div>
     </>
   )
