@@ -115,7 +115,7 @@ export default function model() {
               initial="hidden"
               // animate="visible"
               whileInView="visible"
-              transition={{ duration: 1, delay: 1 }}
+              transition={{ duration: 1, delay: index * 0.2 }}
               // transition={{ duration: 0.5, delay: index * 0.2 }}
               // ref={ref + index}
               key={index}
