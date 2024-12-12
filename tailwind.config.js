@@ -23,10 +23,27 @@ module.exports = {
         'laptop': '1024px',
         'desktop': '1280px',
       },
+      spacing: {
+        "1/12": "8.3333%",
+        "1/6": "16.6667%",
+        "1/5": "20%",
+        "1/4": "25%",
+        "1/3": "33.3333%",
+        "2/5": "40%",
+        "1/2": "50%",
+        "3/5": "60%",
+        "2/3": "66.666667%",
+        "3/4": "75%",
+        "4/5": "80%",
+        "5/6": "83.3333%",
+        "11/12": "91.6667%",
+        "full": "100%"
+      }
     },
 
   },
   plugins: [
-    require('tailwindcss-animated')
+    require('tailwindcss-animated'),
+    // require('@tailwindcss/aspect-ratio')
   ],
 };
