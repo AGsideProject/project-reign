@@ -132,7 +132,6 @@ export default function ModelDetail({ _params }) {
   const url = searchParams.get("item")
 
   console.log(url, "< url")
-
   return (
     <>
       {/* <div className="my-[30px] flex justify-center">
@@ -428,19 +427,79 @@ export default function ModelDetail({ _params }) {
         </Swiper>
       </div>
 
-      <div className="bg-neutral-800">
-        <div className="flex h-48 items-center justify-center">
-          <span className="font-semibold uppercase text-neutral-500">
-            POLAROIDS
-          </span>
-        </div>
-        <HorizontalScrollCarousel />
-        <div className="flex h-48 items-center justify-center">
-          <span className="font-semibold uppercase text-neutral-500">
-            Scroll up
-          </span>
-        </div>
-      </div>
+
+
+      {/* //! showcase carousell */}
+
+      <Swiper
+        slidesPerView={1}
+        navigation={true}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        scrollbar={{ draggable: true }}
+        loop={true}
+        modules={[Pagination, Navigation,]}
+
+        breakpoints={{
+          640: { // 640px is the default width for 'sm' in Tailwind CSS
+            slidesPerView: 2, // Show 2 slides on screens 640px or wider
+            slidesPerGroup: 2,
+          },
+        }}
+        className="w-[75vw] bg-black"
+      >
+
+
+        <SwiperSlide >
+          <div className="aspect-[3/4] bg-yellow-100">
+            <img
+              src={"/image/p1.jpg"}
+              alt="mode"
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide >
+          <div className="aspect-[3/4] bg-yellow-100">
+            <img
+              src={"/image/p2.jpg"}
+              alt="mode"
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </SwiperSlide>
+        {/* //! LANDSCAPE */}
+        <SwiperSlide
+          style={{
+            flex: "0 0 100%",
+          }}
+        >
+          <div className="aspect-[16/10.65] bg-yellow-200">
+            <img
+              src={"/image/l1.jpg"}
+              alt="special mode"
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </SwiperSlide>
+        {/* //! LANDSCAPE */}
+        <SwiperSlide >
+          <div className="aspect-[3/4] bg-yellow-100">
+            <img
+              src={"/image/p3.jpg"}
+              alt="mode"
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </SwiperSlide>
+      </Swiper>
+
+      {/* //! showcase carousell */}
+
+      <div className="h-[10vh]"></div>
     </>
   )
 }
