@@ -192,21 +192,21 @@ export default function ModelDetail({ _params }) {
 			<div className="grid grid-cols-1 gap-2 w-[100vw] p-2 mx-auto md:hidden">
 				<div className="aspect-[3/4] bg-blue-400">
 					<img
-						src={"/image/p1.jpg"}
+						src={"/image/p1.JPG"}
 						alt="mode"
 						className="object-cover w-full h-full"
 					/>
 				</div>
 				<div className="aspect-[3/4] bg-blue-400">
 					<img
-						src={"/image/p2.jpg"}
+						src={"/image/p2.JPG"}
 						alt="mode"
 						className="object-cover w-full h-full"
 					/>
 				</div>
 				<div className="aspect-[3/4] bg-blue-400">
 					<img
-						src={"/image/p3.jpg"}
+						src={"/image/p3.JPG"}
 						alt="mode"
 						className="object-cover w-full h-full"
 					/>
