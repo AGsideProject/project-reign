@@ -91,21 +91,19 @@ export default function ModelDetail({ _params }) {
 				}}
 				className="w-[90vw] md:w-[70vw] bg-black"
 			>
-
-
-				{/* <SwiperSlide >
-					<div className="aspect-[3/4] bg-yellow-100">
-						<img
-							src={url}
-							alt="mode"
-							className="object-cover w-full h-full"
-						/>
-					</div>
-				</SwiperSlide> */}
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
 							src={"/image/p1.jpg"}
+							alt="mode"
+							className="object-cover w-full h-full"
+						/>
+					</div>
+				</SwiperSlide>
+				<SwiperSlide >
+					<div className="aspect-[3/4] bg-yellow-100">
+						<img
+							src={"/image/p2.jpg"}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
@@ -126,19 +124,6 @@ export default function ModelDetail({ _params }) {
 					</div>
 				</SwiperSlide>
 				{/* //! LANDSCAPE */}
-				<SwiperSlide >
-					<div className="hidden">
-						<div className="aspect-[3/4] bg-yellow-100">
-							<img
-								src={"/image/p2.jpg"}
-								alt="mode"
-								className="object-cover w-full h-full"
-							/>
-						</div>
-					</div>
-
-				</SwiperSlide>
-
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
