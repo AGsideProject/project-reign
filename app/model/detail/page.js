@@ -28,7 +28,7 @@ export default function ModelDetail({ _params }) {
 
 	// const url = searchParams.get("item")
 
-	console.log(url, "< url")
+	// console.log(url, "< url")
 	return (
 		<>
 			{/* <div className="my-[30px] flex justify-center">
