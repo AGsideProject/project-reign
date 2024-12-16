@@ -94,7 +94,7 @@ export default function ModelDetail({ _params }) {
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
-							src={"/image/p1.jpg"}
+							src={"/image/p1.JPG"}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
@@ -103,7 +103,7 @@ export default function ModelDetail({ _params }) {
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
-							src={"/image/p2.jpg"}
+							src={"/image/p2.JPG"}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
@@ -117,7 +117,7 @@ export default function ModelDetail({ _params }) {
 				>
 					<div className="aspect-[16/10.65] bg-yellow-200">
 						<img
-							src={"/image/l1.jpg"}
+							src={"/image/l1.JPG"}
 							alt="special mode"
 							className="object-cover w-full h-full"
 						/>
@@ -127,7 +127,7 @@ export default function ModelDetail({ _params }) {
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
-							src={"/image/p3.jpg"}
+							src={"/image/p3.JPG"}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
@@ -263,7 +263,7 @@ export default function ModelDetail({ _params }) {
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
-								src={"/image/p1.jpg"}
+								src={"/image/p1.JPG"}
 								alt="mode"
 								className="object-cover w-full h-full"
 							/>
@@ -272,7 +272,7 @@ export default function ModelDetail({ _params }) {
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
-								src={"/image/p2.jpg"}
+								src={"/image/p2.JPG"}
 								alt="mode"
 								className="object-cover w-full h-full"
 							/>
@@ -281,7 +281,7 @@ export default function ModelDetail({ _params }) {
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
-								src={"/image/p3.jpg"}
+								src={"/image/p3.JPG"}
 								alt="mode"
 								className="object-cover w-full h-full"
 							/>
@@ -290,7 +290,7 @@ export default function ModelDetail({ _params }) {
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
-								src={"/image/p1.jpg"}
+								src={"/image/l1.JPG"}
 								alt="mode"
 								className="object-cover w-full h-full"
 							/>
