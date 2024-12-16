@@ -119,7 +119,10 @@ export default function model() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               // ref={ref + index}
               key={index}
-              viewport={{ once: true, margin: "-200px", }}
+              viewport={{
+                once: true,
+                // margin: "-200px" 
+              }}
             >
 
               <div className={`w-[85vw] md:w-72 lg:w-72 lg:mx-5 lg:mb-10`} key={index}>
