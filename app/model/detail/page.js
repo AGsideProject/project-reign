@@ -24,9 +24,9 @@ export default function ModelDetail({ _params }) {
 
 	const router = useRouter();
 	const paramas = useParams();
-	const searchParams = useSearchParams()
+	// const searchParams = useSearchParams()
 
-	const url = searchParams.get("item")
+	// const url = searchParams.get("item")
 
 	console.log(url, "< url")
 	return (
@@ -93,7 +93,7 @@ export default function ModelDetail({ _params }) {
 			>
 
 
-				<SwiperSlide >
+				{/* <SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
 							src={url}
@@ -101,7 +101,7 @@ export default function ModelDetail({ _params }) {
 							className="object-cover w-full h-full"
 						/>
 					</div>
-				</SwiperSlide>
+				</SwiperSlide> */}
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
@@ -139,7 +139,7 @@ export default function ModelDetail({ _params }) {
 
 				</SwiperSlide>
 
-				{/* <SwiperSlide >
+				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
 							src={"/image/p3.jpg"}
@@ -147,7 +147,7 @@ export default function ModelDetail({ _params }) {
 							className="object-cover w-full h-full"
 						/>
 					</div>
-				</SwiperSlide> */}
+				</SwiperSlide>
 			</Swiper>
 			{/* //! showcase carousell */}
 
@@ -266,7 +266,7 @@ export default function ModelDetail({ _params }) {
 
 					}}
 				>
-					<SwiperSlide>
+					{/* <SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
 								src={url}
@@ -274,7 +274,7 @@ export default function ModelDetail({ _params }) {
 								className="object-cover w-full h-full"
 							/>
 						</div>
-					</SwiperSlide>
+					</SwiperSlide> */}
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img
