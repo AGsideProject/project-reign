@@ -38,32 +38,32 @@ export default function ModelDetail({ _params }) {
 			</div> */}
 
 			<div className="flex flex-col justify-center items-center mb-1 mt-14 ">
-				<div className="mb-6 animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+				<div className="mb-6 ">
 					<p className="text-3xl font-medium">Caitlin N</p>
 				</div>
 
 				<div className="hidden sm:block">
 					<div className="flex flex-col gap-2 justify-center items-center w-[85vw] sm:w-[95vw] lg:w-[70vw] sm:flex-row sm:items-center sm:justify-around sm:flex-wrap sm:h-[50px] lg:gap-0 text-sm">
 
-						<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium">HEIGHT</span>: 181 CM</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium">BUST</span>: 81 CM</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium">WAIST</span>: 62 CM</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium">HIPS</span>: 91 CM</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium">SHOE</span>: 8 US</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[2000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium ">HAIR</span>: DARK BROWN</p>
 						</div>
-						<div className="animate-fade-right animate-once animate-duration-[1000ms] animate-ease-in-out">
+						<div className="">
 							<p> <span className="font-medium ">EYES</span>: BLUE</p>
 						</div>
 					</div>
@@ -86,7 +86,7 @@ export default function ModelDetail({ _params }) {
 				breakpoints={{
 					640: { // 640px is the default width for 'sm' in Tailwind CSS
 						slidesPerView: 2, // Show 2 slides on screens 640px or wider
-						slidesPerGroup: 1,
+						slidesPerGroup: 2,
 					},
 				}}
 				className="w-[90vw] md:w-[70vw] bg-black"
@@ -96,17 +96,16 @@ export default function ModelDetail({ _params }) {
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
-							src={"/image/p1.jpg"}
+							src={url}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
 					</div>
 				</SwiperSlide>
-
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
-							src={"/image/p2.jpg"}
+							src={"/image/p1.jpg"}
 							alt="mode"
 							className="object-cover w-full h-full"
 						/>
@@ -128,6 +127,19 @@ export default function ModelDetail({ _params }) {
 				</SwiperSlide>
 				{/* //! LANDSCAPE */}
 				<SwiperSlide >
+					<div className="hidden">
+						<div className="aspect-[3/4] bg-yellow-100">
+							<img
+								src={"/image/p2.jpg"}
+								alt="mode"
+								className="object-cover w-full h-full"
+							/>
+						</div>
+					</div>
+
+				</SwiperSlide>
+
+				{/* <SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
 							src={"/image/p3.jpg"}
@@ -135,7 +147,7 @@ export default function ModelDetail({ _params }) {
 							className="object-cover w-full h-full"
 						/>
 					</div>
-				</SwiperSlide>
+				</SwiperSlide> */}
 			</Swiper>
 			{/* //! showcase carousell */}
 
@@ -143,36 +155,36 @@ export default function ModelDetail({ _params }) {
 
 				<div className="flex flex-col gap-3 justify-center items-center  text-sm">
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium">HEIGHT</span>: 181 CM</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium">BUST</span>: 81 CM</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium">WAIST</span>: 62 CM</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium">HIPS</span>: 91 CM</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium">SHOE</span>: 8 US</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium ">EYES</span>: BLUE</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
 
-					<div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
+					<div className="">
 						<p> <span className="font-medium ">HAIR</span>: DARK BROWN</p>
 					</div>
 					<div className="bg-black h-[0.5px] w-full"></div>
@@ -180,7 +192,7 @@ export default function ModelDetail({ _params }) {
 				</div>
 			</div>
 
-			<div className="flex justify-center animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out text-white bg-[#1b1919] md:bg-white md:text-black" >
+			<div className="flex justify-center text-white bg-[#1b1919] md:bg-white md:text-black" >
 				<div className="w-[70vw] h-[100px] flex justify-center items-center md:justify-start lg:h-[180px]">
 					<div className="mt-auto mb-11">
 						<p className="text-xl font-medium md:text-2xl">POLAROIDS</p>
@@ -254,6 +266,15 @@ export default function ModelDetail({ _params }) {
 
 					}}
 				>
+					<SwiperSlide>
+						<div className="aspect-[3/4] bg-blue-400">
+							<img
+								src={url}
+								alt="mode"
+								className="object-cover w-full h-full"
+							/>
+						</div>
+					</SwiperSlide>
 					<SwiperSlide>
 						<div className="aspect-[3/4] bg-blue-400">
 							<img

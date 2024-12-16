@@ -115,7 +115,7 @@ const Modal = ({ isOpen, onClose }) => {
               </label>
               <input
                 type="text"
-                placeholder="16:00"
+                placeholder="1 hour"
                 value={formData.bookingHours}
                 onChange={(e) =>
                   setFormData({ ...formData, bookingHours: e.target.value })
