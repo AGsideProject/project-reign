@@ -18,7 +18,8 @@ import 'styles/swiper.css';
 import { Pagination, Navigation } from 'swiper/modules'
 import Image from "next/image";
 
-
+import portrait1 from 'public/image/3.jpg'
+import portrait2 from 'public/image/4.jpg'
 export default function ModelDetail({ _params }) {
 	// console.log(_params, "_params")
 
@@ -43,7 +44,7 @@ export default function ModelDetail({ _params }) {
 				</div>
 
 				<div className="hidden sm:block">
-					<div className="flex flex-col gap-2 justify-center items-center w-[85vw] sm:w-[95vw] lg:w-[70vw] sm:flex-row sm:items-center sm:justify-around sm:flex-wrap sm:h-[50px] lg:gap-0 text-sm">
+					<div className="flex flex-col gap-2 justify-center items-center w-[85vw] sm:w-[95vw] lg:w-[65vw] sm:flex-row sm:items-center sm:justify-around sm:flex-wrap sm:h-[50px] lg:gap-0 text-sm">
 
 						<div className="">
 							<p> <span className="font-medium">HEIGHT</span>: 181 CM</p>
@@ -73,8 +74,8 @@ export default function ModelDetail({ _params }) {
 
 			{/* //! showcase carousell */}
 			<Swiper
-				slidesPerView={1}
-				navigation={true}
+				slidesPerView={2}
+				navigation={false}
 				pagination={{
 					clickable: true,
 					dynamicBullets: true,
@@ -83,14 +84,46 @@ export default function ModelDetail({ _params }) {
 				loop={true}
 				modules={[Pagination, Navigation,]}
 
-				breakpoints={{
-					640: { // 640px is the default width for 'sm' in Tailwind CSS
-						slidesPerView: 2, // Show 2 slides on screens 640px or wider
-						slidesPerGroup: 2,
-					},
-				}}
-				className="w-[90vw] md:w-[70vw] bg-black"
+				// breakpoints={{
+				// 	640: { // 640px is the default width for 'sm' in Tailwind CSS
+				// 		slidesPerView: 2, // Show 2 slides on screens 640px or wider
+				// 		slidesPerGroup: 2,
+				// 	},
+				// }} 
+				className="w-[100vw] md:w-[65vw]"
 			>
+				{/* //! next image */}
+				<SwiperSlide >
+					<div className="aspect-[3/4] bg-yellow-100">
+						<Image
+							src={portrait1}
+							alt="1"
+							layout="fill"
+							objectFit="cover"
+							priority
+							// width={100}
+							// height={700}
+							placeholder="blur"
+						// loader={() => portrait1.src}
+						/>
+					</div>
+				</SwiperSlide>
+				<SwiperSlide >
+					<div className="aspect-[3/4] bg-yellow-100">
+						<Image
+							src={portrait2}
+							alt="2"
+							layout="fill"
+							objectFit="cover"
+							// width={100}
+							// height={100}
+							placeholder="blur"
+							priority
+
+						/>
+					</div>
+				</SwiperSlide>
+				{/* //! next image */}
 				<SwiperSlide >
 					<div className="aspect-[3/4] bg-yellow-100">
 						<img
@@ -177,8 +210,8 @@ export default function ModelDetail({ _params }) {
 				</div>
 			</div>
 
-			<div className="flex justify-center text-white bg-[#1b1919] md:bg-white md:text-black" >
-				<div className="w-[70vw] h-[100px] flex justify-center items-center md:justify-start lg:h-[180px]">
+			<div className="flex justify-center text-black bg-wihte md:bg-white md:text-black" >
+				<div className="w-[65vw] h-[100px] flex justify-center items-center md:justify-start lg:h-[180px]">
 					<div className="mt-auto mb-11">
 						<p className="text-xl font-medium md:text-2xl">POLAROIDS</p>
 						{/* <div className="w-full bg-black h-[1px]"></div> */}
@@ -188,8 +221,11 @@ export default function ModelDetail({ _params }) {
 			</div>
 
 			{/* <VelocityText /> */}
+
+			<div></div>
+
 			{/* <div className="w-full h-32 bg-red-300"></div> */}
-			<div className="grid grid-cols-1 gap-2 w-[100vw] p-2 mx-auto md:hidden">
+			<div className="grid grid-cols-2 gap-1 w-[100vw] mx-auto md:hidden">
 				<div className="aspect-[3/4] bg-blue-400">
 					<img
 						src={"/image/p1.JPG"}
