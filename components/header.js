@@ -19,7 +19,7 @@ const Header = () => {
     } else {
       localStorage.setItem("gender", gen);
       setGender(gen);
-      router.push("/model");
+      router.push("/model-list");
     }
   };
 
@@ -36,17 +36,15 @@ const Header = () => {
         <div className="flex justify-between items-center md:py-6 py-4 px-7">
           <div className="hidden items-center gap-8 md:flex">
             <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-                gender === "female" ? "text-[#FF8C00]" : "text-black"
-              }`}
+              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === "female" ? "text-[#FF8C00]" : "text-black"
+                }`}
               onClick={() => handleGander("female")}
             >
               FEMALE
             </h2>
             <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-                gender === "male" ? "text-[#FF8C00]" : "text-black"
-              }`}
+              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === "male" ? "text-[#FF8C00]" : "text-black"
+                }`}
               onClick={() => handleGander("male")}
             >
               MALE
