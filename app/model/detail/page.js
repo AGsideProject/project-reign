@@ -5,8 +5,9 @@ import {
 	useVelocity,
 	useTransform,
 	useSpring,
+	AnimatePresence
 } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,6 +27,8 @@ export default function ModelDetail({ _params }) {
 
 	const router = useRouter();
 	const paramas = useParams();
+	const [isOpen, setIsOpen] = useState(false);
+
 	// const searchParams = useSearchParams()
 
 	// const url = searchParams.get("item")
@@ -39,7 +42,15 @@ export default function ModelDetail({ _params }) {
 				</div>
 			</div> */}
 
+			{/* <ExampleWrapper /> */}
+			<SpringModal isOpen={isOpen} setIsOpen={setIsOpen} />
 			<div className="flex flex-col justify-center items-center mb-1 mt-14 ">
+				<button
+					onClick={() => setIsOpen(true)}
+					className="bg-red-700 text-black font-medium px-4 py-2 rounded"
+				>
+					Open Modal
+				</button>
 				<div className="mb-6 ">
 					<p className="text-3xl font-medium">Caitlin N</p>
 				</div>
@@ -452,5 +463,69 @@ const VelocityText = () => {
 				</motion.p>
 			</div>
 		</section>
+	);
+};
+
+const SpringModal = ({ isOpen, setIsOpen }) => {
+	return (
+		<AnimatePresence>
+			{isOpen && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					onClick={() => setIsOpen(false)}
+					className="bg-slate-900/20 backdrop-blur p-1 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+				>
+
+
+					{/* <motion.div
+							initial={{ scale: 0, }}
+							animate={{ scale: 1, }}
+							exit={{ scale: 0, }}
+							onClick={(e) => e.stopPropagation()}
+							className=" w-[30px] h-[30px] bg-black rounded-full absolute top-8 -left-3 z-50 flex justify-center items-center">
+							<p className="text-white text-center">X</p>
+						</motion.div> */}
+
+					<motion.div
+						initial={{ scale: 0, }}
+						animate={{ scale: 1, }}
+						exit={{ scale: 0, }}
+						onClick={(e) => e.stopPropagation()}
+						className="bg-white text-black p-3 rounded-md w-full max-w-lg shadow-xl cursor-default relative overflow-hidden my-10"
+					>
+						<div className="relative z-10">
+
+							<div className="aspect-[3/4]">
+								<Image
+									src={portrait1}
+									alt="model name"
+									// layout="fill"
+									objectFit="cover"
+									// priority
+									placeholder="blur"
+								// blurDataURL={item.url}
+								/>
+							</div>
+
+
+							{/* <div className="flex gap-2 ">
+								<button
+									onClick={() => setIsOpen(false)}
+									className="bg-white text-black font-semibold w-full pt-auto"
+								>
+									BACK
+								</button>
+							</div> */}
+						</div>
+					</motion.div>
+					{/* </div> */}
+
+
+
+				</motion.div>
+			)}
+		</AnimatePresence>
 	);
 };
