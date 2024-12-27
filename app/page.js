@@ -19,7 +19,7 @@ const Home = () => {
     } else {
       localStorage.setItem("gender", gen);
       setGender(gen);
-      router.push("/model");
+      router.push("/model-list");
     }
   };
 

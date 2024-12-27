@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        glassWhite: 'rgba(255, 255, 255, 0.18)',
       },
       customShadow: '0px 30px 90px rgba(0, 0, 0, 0.4)',
       boxShadow: {
@@ -38,7 +39,11 @@ module.exports = {
         "5/6": "83.3333%",
         "11/12": "91.6667%",
         "full": "100%"
+      },
+      backdropBlur: {
+        glass: '7.4px', // Add custom blur
       }
+
     },
 
   },

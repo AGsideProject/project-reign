@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion, useInView, useAnimation, animate } from 'framer-motion'
 import Image from "next/image";
 
+import reignLogo from 'public/image/reignLogo.jpg'
 import portrait1 from 'public/image/3.jpg'
 // import portrait2 from 'public/image/4.jpg'
 export default function models() {
@@ -12,34 +13,6 @@ export default function models() {
   const [positions, setPositions] = useState([]);
   const router = useRouter()
   const { ref } = useInView("model")
-
-
-  //! paralax
-  // State to store mouse position for each image
-
-  // Function to handle mouse movement for a specific image
-  const handleMouseMove = (e, index) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 40; // Adjust multiplier for stronger effect
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 40; // Adjust multiplier for stronger effect
-
-    // Update the position for the specific image using its index
-    setPositions((prevPositions) => {
-      const newPositions = [...prevPositions];
-      newPositions[index] = { x, y };
-      return newPositions;
-    });
-  };
-
-  // Reset position when hover ends
-  const handleMouseLeave = (index) => {
-    setPositions((prevPositions) => {
-      const newPositions = [...prevPositions];
-      newPositions[index] = { x: 0, y: 0 }; // Reset the position for the specific image
-      return newPositions;
-    });
-  };
-  //! paralax
 
   useEffect(() => {
     setDomLoaded(true);
@@ -102,13 +75,15 @@ export default function models() {
     setPositions(new Array(14).fill({ x: 0, y: 0 }));
   }, []);
   // Avoid rendering if not loaded on client
-  if (!domLoaded) return (<div className="h-screen w-screen bg-red-700">loading</div>);
+
+  if (!domLoaded) return (<div className="h-screen w-screen bg-white backdrop-blur-glass"></div>);
+  // if (!domLoaded) return null
+
+
 
   return (
     <>
-
-
-      <section className="grid grid-cols-1 md:grid-cols-4 p-5 md:p-10 gap-5">
+      <section ref={ref} className="grid grid-cols-1 md:grid-cols-4 p-5 md:p-10 gap-5">
         {/* DYNAMIC IMAGES */}
         {
           images.map((item, index) => {
@@ -116,18 +91,40 @@ export default function models() {
               <motion.div
                 onClick={() => router.push(`/model/detail?item=${item.url}`)}
                 key={index}
-                className="overflow-hidden">
+                className="overflow-hidden"
+                variants={{
+                  hidden: { opacity: 0, y: 75 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.7, delay: index * 0.2 }}
+                viewport={{
+                  once: true,
+                }}
+              >
                 {/* IMAGE */}
-                <div className="relative aspect-[3/4.53] bg-yellow-100 ">
+                <div className="relative aspect-[3/4.53] bg-white">
+                  <Image
+                    src={reignLogo}
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="center"
+                    priority
+                    placeholder="blur"
+                  />
+
                   <Image
                     src={item.url}
-                    alt="1"
+                    alt="model name"
                     layout="fill"
                     objectFit="cover"
-                    priority
+                    // priority
                     placeholder="blur"
                     blurDataURL={item.url}
                   />
+
                   {/* OVERLAY */}
                   <motion.div
                     variants={{
@@ -135,7 +132,7 @@ export default function models() {
                         opacity: 0,
                       },
                       visible: {
-                        opacity: 0.9,
+                        opacity: 1,
                         transition: {
                           duration: 0.5,
                           ease: "easeInOut",
@@ -144,7 +141,7 @@ export default function models() {
                     }}
                     initial='hidden'
                     whileHover="visible"
-                    className="absolute w-full h-full bg-white top-0 text-black flex flex-col justify-center items-center opacity-90 gap-3 md:gap-2 xl:gap-5 2xl:gap-8">
+                    className="absolute w-full h-full bg-white/70 top-0 text-black flex flex-col justify-center items-center opacity-90 gap-3 md:gap-2 xl:gap-5 2xl:gap-8">
 
                     <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HEIGHT: 181 CM</p>
 
@@ -162,6 +159,7 @@ export default function models() {
 
                   </motion.div>
                   {/* OVERLAY */}
+
                 </div>
                 {/* IMAGE */}
 
@@ -175,9 +173,8 @@ export default function models() {
         {/* DYNAMIC IMAGES */}
 
         {/* FIX note: jangan di apus do*/}
-        <motion.div
+        {/* <motion.div
           className="overflow-hidden">
-          {/* IMAGE */}
           <div className="relative aspect-[3/4] bg-yellow-100 ">
             <Image
               src={portrait1}
@@ -186,7 +183,6 @@ export default function models() {
               priority
               placeholder="blur"
             />
-            {/* OVERLAY */}
             <motion.div
               variants={{
                 hidden: {
@@ -219,17 +215,13 @@ export default function models() {
               <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> EYES: BLUE</p>
 
             </motion.div>
-            {/* OVERLAY */}
           </div>
-          {/* IMAGE */}
 
           <div className="flex items-center justify-center my-5 ">
             <p className="text-xl">MODEL NAME</p>
           </div>
-        </motion.div>
+        </motion.div> */}
         {/* FIX */}
-
-
       </section>
     </>
   );

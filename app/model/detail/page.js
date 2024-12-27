@@ -18,6 +18,7 @@ import 'styles/swiper.css';
 import { Pagination, Navigation } from 'swiper/modules'
 import Image from "next/image";
 
+import reignLogo from 'public/image/reignLogo.jpg'
 import portrait1 from 'public/image/3.jpg'
 import portrait2 from 'public/image/4.jpg'
 export default function ModelDetail({ _params }) {
@@ -119,7 +120,6 @@ export default function ModelDetail({ _params }) {
 							// height={100}
 							placeholder="blur"
 							priority
-
 						/>
 					</div>
 				</SwiperSlide>
@@ -213,7 +213,10 @@ export default function ModelDetail({ _params }) {
 			<div className="flex justify-center text-black bg-wihte md:bg-white md:text-black" >
 				<div className="w-[65vw] h-[100px] flex justify-center items-center md:justify-start lg:h-[180px]">
 					<div className="mt-auto mb-11">
-						<p className="text-xl font-medium md:text-2xl">POLAROIDS</p>
+						<p
+							// initial={{ opacity: 0, x: -75 }}
+							// whileInView={{ opacity: 1, x: 0, transition: { duration: 0.3, delay: 0.5, ease: "easeOut" } }}
+							className="text-xl font-medium md:text-2xl">POLAROIDS</p>
 						{/* <div className="w-full bg-black h-[1px]"></div> */}
 					</div>
 
@@ -409,9 +412,6 @@ export default function ModelDetail({ _params }) {
 
 				</Swiper>
 			</div>
-
-
-
 
 			<div className="h-[10vh]"></div>
 		</>
