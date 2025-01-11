@@ -11,9 +11,26 @@ export default function models() {
   const [domLoaded, setDomLoaded] = useState(false);
   const [images, setImages] = useState([]);
   const [positions, setPositions] = useState([]);
+  const [listModel, setListModel] = useState([])
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { ref } = useInView("model")
 
+  async function fetchModel() {
+    try {
+      setLoading(true)
+      const res = await fetch('https://reign-service.onrender.com/v1/model');
+      const { data } = await res.json()
+      setLoading(false)
+      setListModel(data)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchModel()
+  }, [])
   useEffect(() => {
     setDomLoaded(true);
     setImages([
@@ -76,20 +93,20 @@ export default function models() {
   }, []);
   // Avoid rendering if not loaded on client
 
-  if (!domLoaded) return (<div className="h-screen w-screen bg-white backdrop-blur-glass"></div>);
-  // if (!domLoaded) return null
-
+  if (loading) return (<div className="h-screen w-screen bg-white backdrop-blur-glass"></div>);
+  // if (!domLoaded ) return (<div className="h-screen w-screen bg-white backdrop-blur-glass"></div>);
 
 
   return (
     <>
       <section ref={ref} className="grid grid-cols-1 md:grid-cols-4 p-5 md:p-10 gap-5">
-        {/* DYNAMIC IMAGES */}
+
+        {/* REIGN DATA */}
         {
-          images.map((item, index) => {
+          listModel.map((item, index) => {
             return (
               <motion.div
-                onClick={() => router.push(`/model/detail?item=${item.url}`)}
+                onClick={() => router.push(`/model/detail?item=${item.slug}`)}
                 key={index}
                 className="overflow-hidden"
                 variants={{
@@ -104,7 +121,7 @@ export default function models() {
                 }}
               >
                 {/* IMAGE */}
-                <div className="relative aspect-[3/4.53] bg-white">
+                <div className="relative aspect-[4/5] bg-white">
                   <Image
                     src={reignLogo}
                     alt="Logo"
@@ -116,13 +133,13 @@ export default function models() {
                   />
 
                   <Image
-                    src={item.url}
+                    src={item.cover_img}
                     alt="model name"
                     layout="fill"
                     objectFit="cover"
                     // priority
                     placeholder="blur"
-                    blurDataURL={item.url}
+                    blurDataURL={item.cover_img}
                   />
 
                   {/* OVERLAY */}
@@ -143,19 +160,19 @@ export default function models() {
                     whileHover="visible"
                     className="absolute w-full h-full bg-white/70 top-0 text-black flex flex-col justify-center items-center opacity-90 gap-3 md:gap-2 xl:gap-5 2xl:gap-8">
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HEIGHT: 181 CM</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HEIGHT: {item.hight} CM</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> BUST: 81 CM</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> BUST: {item.bust} CM</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> WAIST: 62 CM</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> WAIST: {item.waist} CM</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HIPS: 91 CM</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HIPS: {item.hips} CM</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> SHOE: 8 US</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> SHOE: {item.shoe_size} US</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HAIR: DARK BROWN</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HAIR: {item.hair}</p>
 
-                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> EYES: BLUE</p>
+                    <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> EYES: {item.eyes}</p>
 
                   </motion.div>
                   {/* OVERLAY */}
@@ -164,11 +181,95 @@ export default function models() {
                 {/* IMAGE */}
 
                 <div className="flex items-center justify-center my-5 ">
-                  <p className="text-xl">MODEL NAME</p>
+                  <p className="text-xl">{item.name}</p>
                 </div>
               </motion.div>
             )
           })
+        }
+        {/* REIGN DATA */}
+
+        {/* DYNAMIC IMAGES */}
+        {
+          // images.map((item, index) => {
+          //   return (
+          //     <motion.div
+          //       onClick={() => router.push(`/model/detail?item=${item.url}`)}
+          //       key={index}
+          //       className="overflow-hidden"
+          //       variants={{
+          //         hidden: { opacity: 0, y: 75 },
+          //         visible: { opacity: 1, y: 0 },
+          //       }}
+          //       initial="hidden"
+          //       whileInView="visible"
+          //       transition={{ duration: 0.7, delay: index * 0.2 }}
+          //       viewport={{
+          //         once: true,
+          //       }}
+          //     >
+          //       <div className="relative aspect-[3/4.53] bg-white">
+          //         <Image
+          //           src={reignLogo}
+          //           alt="Logo"
+          //           layout="fill"
+          //           objectFit="contain"
+          //           objectPosition="center"
+          //           priority
+          //           placeholder="blur"
+          //         />
+
+          //         <Image
+          //           src={item.url}
+          //           alt="model name"
+          //           layout="fill"
+          //           objectFit="cover"
+          //           // priority
+          //           placeholder="blur"
+          //           blurDataURL={item.url}
+          //         />
+
+          //         <motion.div
+          //           variants={{
+          //             hidden: {
+          //               opacity: 0,
+          //             },
+          //             visible: {
+          //               opacity: 1,
+          //               transition: {
+          //                 duration: 0.5,
+          //                 ease: "easeInOut",
+          //               },
+          //             },
+          //           }}
+          //           initial='hidden'
+          //           whileHover="visible"
+          //           className="absolute w-full h-full bg-white/70 top-0 text-black flex flex-col justify-center items-center opacity-90 gap-3 md:gap-2 xl:gap-5 2xl:gap-8">
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HEIGHT: 181 CM</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> BUST: 81 CM</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> WAIST: 62 CM</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HIPS: 91 CM</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> SHOE: 8 US</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> HAIR: DARK BROWN</p>
+
+          //           <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl "> EYES: BLUE</p>
+
+          //         </motion.div>
+
+          //       </div>
+
+          //       <div className="flex items-center justify-center my-5 ">
+          //         <p className="text-xl">MODEL NAME</p>
+          //       </div>
+          //     </motion.div>
+          //   )
+          // })
         }
         {/* DYNAMIC IMAGES */}
 
