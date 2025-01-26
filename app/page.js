@@ -1,34 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import BookingModal from "components/modals";
+import BookingModal from "components/page/form-book";
+import Link from "next/link";
 
 const Home = () => {
-  const router = useRouter();
-
   // Initialize State
-  const [gender, setGender] = useState("");
   const [openModal, setOpenModal] = useState(false);
-
-  // Handle gender
-  const handleGander = (gen) => {
-    if (gender === gen) {
-      localStorage.removeItem("gender");
-      setGender("");
-    } else {
-      localStorage.setItem("gender", gen);
-      setGender(gen);
-      router.push("/model-list");
-    }
-  };
-
-  useEffect(() => {
-    const storedValue = localStorage.getItem("gender");
-    if (storedValue) {
-      setGender(storedValue);
-    }
-  }, []);
 
   return (
     <>
@@ -40,20 +18,16 @@ const Home = () => {
       >
         <div className="flex justify-between items-center py-8 px-6">
           <div className="flex items-center  md:gap-8 gap-4">
-            <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "female" ? "text-black" : "text-white"
-                }`}
-              onClick={() => handleGander("female")}
-            >
-              FEMALE
-            </h2>
-            <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-black transition-colors duration-300 ${gender === "male" ? "text-black" : "text-white"
-                }`}
-              onClick={() => handleGander("male")}
-            >
-              MALE
-            </h2>
+            {["FEMELE", "MALE"].map((type) => (
+              <Link href={`/models/${type.toLowerCase()}`}>
+                <h2
+                  key={`model-${type}`}
+                  className="text-sm font-medium cursor-pointer hover:text-black transition-colors duration-300 text-white"
+                >
+                  {type}
+                </h2>
+              </Link>
+            ))}
           </div>
           <h2
             onClick={() => setOpenModal(true)}

@@ -1,14 +1,19 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import BookingModal from "./modals";
+import BookingModal from "components/page/form-book";
 
 const Footer = () => {
   const theRef = useRef(null);
+  const waURL = `https://api.whatsapp.com/send/?phone=6281286917510&text=Hello%2C+I+am+interested+in+booking+your+services.+Can+you+please+provide+more+details%3F&type=phone_number&app_absent=0`;
   // Initialize State
 
   const [openModal, setOpenModal] = useState(false);
   const [isFix, setIsFixed] = useState(true);
+
+  const handleWaMe = () => {
+    window.open(waURL, "_blank"); // Opens the WhatsApp link in a new tab
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -20,7 +25,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="border-t border-t-[#8b8b8b] border-solid">
+      <div className="border-t border-t-[#8b8b8b] border-solid relative">
         <div className="max-w-[1440px] mx-auto">
           {/* White Section */}
           <div className="p-10 grid md:grid-cols-4 gap-8 text-gray-700 text-sm">
@@ -133,9 +138,21 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Floating Wa */}
+          <button
+            onClick={handleWaMe}
+            className="fixed z-40 md:bottom-8 bottom-20 right-6 flex justify-center items-center h-[60px] w-[60px] rounded-full bg-[#4CD140] transition-all hover:shadow-lg"
+          >
+            <img
+              alt="whatsapp"
+              src="/whatsapp.svg"
+              className="w-[27px] h-[27px]"
+            />
+          </button>
+
           {/* Floating Button */}
           <button
-            className={`md:hidden fixed z-50 bottom-8 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${
+            className={`md:hidden fixed z-40 bottom-6 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${
               isFix ? "bg-black text-white" : "bg-white text-black"
             }`}
             onClick={() => setOpenModal(true)}

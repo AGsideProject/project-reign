@@ -1,10 +1,9 @@
+"use client";
 
-'use client';
-
-import Footer from "components/footer";
-import Header from "components/header";
+import Footer from "components/layouts/footer";
+import Header from "components/layouts/header";
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion, useInView, useAnimation } from "framer-motion";
 
 function Section({ children }) {
   const ref = useRef(null);
@@ -16,7 +15,7 @@ function Section({ children }) {
         style={{
           transform: isInView ? "none" : "translateX(-200px)",
           opacity: isInView ? 1 : 0,
-          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
         }}
       >
         {children}
@@ -54,7 +53,6 @@ export default function page() {
   // }, []);
 
   return (
-
     <>
       <Header />
 
@@ -104,17 +102,13 @@ export default function page() {
       </div>
       <div className="w-[50vw] h-[500px] mx-20 bg-slate-400">
         <Section>when</Section>
-
       </div>
       <div className="w-[50vw] h-[500px] mx-20 bg-slate-400">
         <Section>in</Section>
-
       </div>
       <div className="w-[50vw] h-[500px] mx-20 bg-slate-400">
         <Section>view!</Section>
-
       </div>
-
     </>
   );
 }
