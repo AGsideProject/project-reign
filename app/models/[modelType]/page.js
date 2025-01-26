@@ -6,9 +6,11 @@ const ModelListPage = async ({ params }) => {
   const modelType = (await params).modelType;
 
   return (
-    <>
-      <ModelListComponent modelGender={modelType} />
-    </>
+    <main>
+      <div className="min-h-[90vh]">
+        <ModelListComponent modelGender={modelType} />
+      </div>
+    </main>
   );
 };
 

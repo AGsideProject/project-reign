@@ -10,7 +10,7 @@ const ModelDetailPage = async ({ params }) => {
   const response = await fetchData(`/v1/model/${slug}`);
 
   return (
-    <>
+    <main>
       <div className="flex flex-col justify-center items-center mb-1 mt-14">
         <div className="mb-6 animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
           <p className="text-4xl font-medium">{response.name}</p>
@@ -63,7 +63,7 @@ const ModelDetailPage = async ({ params }) => {
       </div>
       {/* Model Detail Content */}
       <ModelDetailComponent data={response} />
-    </>
+    </main>
   );
 };
 

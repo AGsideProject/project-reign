@@ -1,18 +1,20 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import BookingModal from "components/page/form-book";
 
 const Footer = () => {
+  const pathname = usePathname();
   const theRef = useRef(null);
-  const waURL = `https://api.whatsapp.com/send/?phone=6281286917510&text=Hello%2C+I+am+interested+in+booking+your+services.+Can+you+please+provide+more+details%3F&type=phone_number&app_absent=0`;
+  const waURL = `https://api.whatsapp.com/send/?phone=${process.env.NEXT_PUBLIC_API_CONTACT_NUMBER}&text=${process.env.NEXT_PUBLIC_API_MESSAGE_TEMPLETE}&type=phone_number&app_absent=0`;
+  const modelName = pathname.split("model/")[1] || "";
   // Initialize State
-
   const [openModal, setOpenModal] = useState(false);
   const [isFix, setIsFixed] = useState(true);
 
   const handleWaMe = () => {
-    window.open(waURL, "_blank"); // Opens the WhatsApp link in a new tab
+    window.open(waURL, "_blank"); 
   };
 
   useEffect(() => {
@@ -178,7 +180,11 @@ const Footer = () => {
         </div>
 
         {/* Modals Book */}
-        <BookingModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+        <BookingModal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          modelName={modelName}
+        />
       </div>
     </>
   );

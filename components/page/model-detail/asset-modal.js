@@ -1,7 +1,7 @@
 import useKeypress from "react-use-keypress";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
-import CarouselAssets from "./carousel-assets";
+import CarouselModal from "./carousel-mobile";
 
 const AssetsDetailModal = ({
   curIndex,
@@ -103,7 +103,7 @@ const AssetsDetailModal = ({
         >
           &times;
         </button>
-        <CarouselAssets
+        <CarouselModal
           showIndicator={true}
           showPagination={false}
           curIndex={curIndex}

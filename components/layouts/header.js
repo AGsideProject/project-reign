@@ -8,6 +8,7 @@ const Header = () => {
   const pathname = usePathname();
   const gender =
     pathname.split("models/")[1] || localStorage.getItem("gender") || "";
+  const modelName = pathname.split("model/")[1] || "";
 
   // Initialize State
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -96,7 +97,11 @@ const Header = () => {
       </div>
 
       {/* Modals Book */}
-      <BookingModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <BookingModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        modelName={modelName}
+      />
     </>
   );
 };

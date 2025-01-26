@@ -1,101 +1,38 @@
 "use client";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "styles/swiper.css";
-import { Pagination, Navigation } from "swiper/modules";
 import AssetsDetailModal from "./asset-modal";
 import CarouselAssets from "./carousel-assets";
+import CarouselModal from "./carousel-mobile";
 
 const ModelDetailComponent = ({ data }) => {
   // Initialize state
   const [activeTab, setActiveTab] = useState("polaroid");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const url =
-    "https://plus.unsplash.com/premium_photo-1664542157691-d0aa8ff453fd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
   const handleViewAsset = (id) => {
     setCurrentIndex(id);
     setOpenModal(true);
   };
 
-  console.log(data, "<<data");
-
   return (
-    <>
+    <div className="mb-20">
       {/* //! main carousel */}
       <div className="flex justify-center">
-        <div className="w-[90vw] h-[70vh] sm:w-[95vw] lg:w-[90vw] bg-black">
-          {/* <Swiper
-            // spaceBetween={0} //! gap between photo
-            slidesPerView={1}
-            // slidespreview={3}
-            navigation={false}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            scrollbar={{ draggable: true }}
-            // className="mySwiper"
-            loop={true}
-            modules={[Pagination, Navigation]}
-            breakpoints={{
-              640: {
-                // 640px is the default width for 'sm' in Tailwind CSS
-                slidesPerView: 2, // Show 2 slides on screens 640px or wider
-              },
-            }}
-          >
-            <SwiperSlide>
-              <div className="w-[100%] h-[70vh] bg-blue-400">
-                <img
-                  alt="mode"
-                  src={url}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-[100%] h-[70vh] bg-blue-400">
-                <img
-                  alt="mode"
-                  src={"/image/1.JPG"}
-                  className="w-full h-full object-cover "
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-[100%] h-[70vh] bg-blue-400">
-                <img
-                  alt="mode"
-                  src={"/image/2.JPG"}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-[100%] h-[70vh] bg-blue-400">
-                <img
-                  alt="mode"
-                  src={"/image/3.jpg"}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-[100%] h-[70vh] bg-blue-400">
-                <img
-                  alt="mode"
-                  src={"/image/4.jpg"}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </SwiperSlide>
-          </Swiper> */}
+        {/* Desktop */}
+        <div className="hidden sm:block w-[90vw] h-[80vh] sm:w-[95vw] lg:w-[90vw] bg-black">
           <CarouselAssets data={data.carousel} />
+        </div>
+
+        {/* Mobile */}
+        <div className="grid sm:hidden w-[98vw] md:w-[75vw] min-h-[40vh]">
+          <CarouselModal
+            showIndicator={false}
+            showPagination={true}
+            curIndex={0}
+            data={data.carousel}
+            className="w-[98vw] md:w-[75vw]"
+          />
         </div>
       </div>
       {/* //! main carousel */}
@@ -114,7 +51,7 @@ const ModelDetailComponent = ({ data }) => {
                     activeTab === el ? "border-black" : "border-white"
                   }`}
                 >
-                  <p className="font-thin uppercase tracking-[.25em] text-xl text-center sm:font-medium">
+                  <p className="font-thin uppercase tracking-[.25em] text-xl text-center sm:font-normal">
                     {el}
                   </p>
                 </div>
@@ -160,7 +97,7 @@ const ModelDetailComponent = ({ data }) => {
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
       />
-    </>
+    </div>
   );
 };
 

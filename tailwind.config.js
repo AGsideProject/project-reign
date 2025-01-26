@@ -41,18 +41,22 @@ module.exports = {
         full: "100%",
       },
       backdropBlur: {
-        glass: "7.4px", // Add custom blur
+        glass: "7.4px",
       },
       // Add custom animations
       animation: {
-        "fade-in": "fade-in 0.5s ease-out", // Fade-in animation
-        "zoom-in": "zoom-in 0.5s ease-out", // Zoom-in animation
+        "fade-in": "fade-in 0.5s ease-out",
+        "zoom-in": "zoom-in 0.5s ease-out",
+        l3: "l3 2s infinite linear",
       },
       keyframes: {
         // Fade-in animation
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
+        },
+        l3: {
+          "100%": { backgroundPosition: "right" },
         },
         // Zoom-in animation
         "zoom-in": {

@@ -3,18 +3,17 @@ import { MailCheck } from "lucide-react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const initform = {
-  brand_name: "",
-  contact_name: "",
-  shoot_date: "",
-  booking_hour: "",
-  usages: [],
-  wa_number: "",
-  email: "",
-  desired_model: "",
-};
-
-const FormBookModal = ({ isOpen, onClose }) => {
+const FormBookModal = ({ isOpen, onClose, modelName }) => {
+  const initform = {
+    brand_name: "",
+    contact_name: "",
+    shoot_date: "",
+    booking_hour: "",
+    usages: [],
+    wa_number: "",
+    email: "",
+    desired_model: (modelName && modelName.replace("-", " ")) || "",
+  };
   // Initialize State
   const [formData, setFormData] = useState(initform);
   const [loading, setLoading] = useState(false);
@@ -53,6 +52,7 @@ const FormBookModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setError("");
     // Validation
+    
 
     setLoading(true);
     try {
