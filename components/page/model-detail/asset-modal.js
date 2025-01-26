@@ -1,6 +1,6 @@
 import useKeypress from "react-use-keypress";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CarouselAssets from "./carousel-assets";
 
 const AssetsDetailModal = ({
@@ -10,36 +10,22 @@ const AssetsDetailModal = ({
   onClose,
   setCurIndex,
 }) => {
-  const [slideDirection, setSlideDirection] = useState("right"); // Track slide direction
-
   // Handle previous button
   const handlePrev = () => {
-    if (curIndex !== 0) {
-      setSlideDirection("left"); // Set direction to left
-      setCurIndex((prev) => (prev -= 1));
-    }
+    if (curIndex > 0) setCurIndex((prev) => prev - 1);
   };
 
   // Handle next button
   const handleNext = () => {
-    if (curIndex !== data.length - 1) {
-      setSlideDirection("right"); // Set direction to right
-      setCurIndex((prev) => (prev += 1));
-    }
+    if (curIndex < data.length - 1) setCurIndex((prev) => prev + 1);
   };
 
-  useKeypress("ArrowRight", () => {
-    handleNext();
-  });
+  // Keyboard navigation
+  useKeypress("ArrowRight", handleNext);
+  useKeypress("ArrowLeft", handlePrev);
+  useKeypress("Escape", onClose);
 
-  useKeypress("ArrowLeft", () => {
-    handlePrev();
-  });
-
-  useKeypress("Escape", () => {
-    onClose();
-  });
-
+  // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden");
@@ -54,22 +40,32 @@ const AssetsDetailModal = ({
 
   if (!isOpen) return null;
 
+  // Determine aspect ratio based on orientation
+  const currentAsset = data[curIndex];
+  const isLandscape = currentAsset?.orientation === "landscape";
+  const aspectRatioClass = isLandscape ? "aspect-[16/9]" : "aspect-[1/2]";
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      {/* START - On Desktop View */}
+      {/* Desktop View */}
       <div className="hidden md:flex justify-between items-center w-full px-1 md:px-10 lg:px-20 2xl:max-w-[70vw]">
         {/* Left Button */}
         <button
+          aria-label="Previous"
           className="flex justify-center items-center rounded-full text-gray-300 hover:text-white h-10 w-10 bg-black"
           onClick={handlePrev}
+          disabled={curIndex === 0}
         >
           <ChevronLeft />
         </button>
 
         {/* The Asset */}
-        <div>
-          <div className="flex relative bg-[#555555] shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw]">
+        <div className="relative">
+          <div
+            className={`bg-[#555555] shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw] ${aspectRatioClass}`}
+          >
             <button
+              aria-label="Close"
               onClick={onClose}
               className="absolute flex justify-center items-center rounded-full top-[-16px] right-[-13px] text-gray-300 hover:text-white text-xl h-7 w-7 bg-black pb-1"
             >
@@ -77,41 +73,44 @@ const AssetsDetailModal = ({
             </button>
             <img
               alt="mode"
-              src={data[curIndex].img_url} // Use the current image from the data array
-              className={`w-full aspect-[1/2] object-cover ${
-                slideDirection === "right"
-                  ? "animate-slide-in-right"
-                  : "animate-slide-in-left"
-              }`}
+              src={currentAsset.img_url}
+              className="w-full h-full object-cover animate-fade-in"
             />
           </div>
           {/* Indicator */}
-          <p className="text-end text-[12px] text-[#CCCCCC]">{`${
+          <p className="text-end text-[12px] text-[#CCCCCC] mt-2">{`${
             curIndex + 1
           } / ${data.length}`}</p>
         </div>
 
         {/* Right Button */}
         <button
+          aria-label="Next"
           className="flex justify-center items-center rounded-full text-gray-300 hover:text-white h-10 w-10 bg-black"
           onClick={handleNext}
+          disabled={curIndex === data.length - 1}
         >
           <ChevronRight />
         </button>
       </div>
-      {/* END - On Desktop View */}
 
-      {/* START - On Mobile View */}
+      {/* Mobile View */}
       <div className="grid md:hidden">
         <button
+          aria-label="Close"
           onClick={onClose}
           className="text-gray-300 hover:text-white text-2xl justify-end text-right font-medium"
         >
           &times;
         </button>
-        <CarouselAssets showIndicator={true} showPagination={false} />
+        <CarouselAssets
+          showIndicator={true}
+          showPagination={false}
+          curIndex={curIndex}
+          data={data}
+          className="w-[98vw] md:w-[75vw]"
+        />
       </div>
-      {/* END - On Mobile View */}
     </div>
   );
 };

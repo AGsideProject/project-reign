@@ -12,9 +12,17 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body suppressHydrationWarning={true}>
+      <body
+        suppressHydrationWarning={true}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          margin: 0,
+        }}
+      >
         <Header />
-        {children}
+        <main style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
     </html>

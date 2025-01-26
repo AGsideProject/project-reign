@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -11,9 +11,15 @@ const CarouselAssets = ({
   showNavigation,
   showPagination = true,
   showIndicator,
+  curIndex,
+  data,
+  className,
 }) => {
   const modules = [Navigation];
   if (showPagination) modules.push(Pagination);
+
+  // Initialize state
+  const [crrentIndex, setCurIndex] = useState(curIndex || 0);
 
   return (
     <React.Fragment>
@@ -27,62 +33,38 @@ const CarouselAssets = ({
         scrollbar={{ draggable: true }}
         loop={true}
         modules={modules}
+        initialSlide={curIndex}
+        onSlideChange={(swiper) => setCurIndex(swiper.realIndex)}
         breakpoints={{
           640: {
             // 640px is the default width for 'sm' in Tailwind CSS
             slidesPerView: 2, // Show 2 slides on screens 640px or wider
-            slidesPerGroup: 2,
+            // slidesPerGroup: 2,
           },
         }}
-        className="w-[98vw] md:w-[75vw] bg-black"
+        className={className}
       >
-        {/* Portrait Image */}
-        <SwiperSlide>
-          <div className="h-[70vh] bg-yellow-100">
-            <img
-              src={"/image/p1.jpg"}
-              alt="mode"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </SwiperSlide>
-
-        {/* Portrait Image */}
-        <SwiperSlide>
-          <div className="h-[70vh] bg-yellow-100">
-            <img
-              src={"/image/p2.jpg"}
-              alt="mode"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </SwiperSlide>
-
-        {/* Landscape Image */}
-        <SwiperSlide>
-          <div className="h-[70vh] flex justify-center items-center bg-yellow-200">
-            <img
-              src={"/image/l1.jpg"}
-              alt="special mode"
-              className="object-contain w-full h-full"
-            />
-          </div>
-        </SwiperSlide>
-
-        {/* Portrait Image */}
-        <SwiperSlide>
-          <div className="h-[70vh] bg-yellow-100">
-            <img
-              src={"/image/p3.jpg"}
-              alt="mode"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </SwiperSlide>
+        {data.map((element, index) => (
+          <SwiperSlide key={`carousel-assets-${index}`}>
+            <div className="h-[70vh] flex justify-center items-center">
+              <img
+                src={element.img_url}
+                alt={`assets-model-${index}`}
+                className={`${
+                  element.orientation === "landscape"
+                    ? "object-contain"
+                    : "object-cover"
+                } w-full h-full`}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       {showIndicator && (
-        <p className="text-end text-[12px] text-[#CCCCCC]">1 / 17</p>
+        <p className="text-end text-[12px] text-[#CCCCCC]">
+          {crrentIndex + 1} / {data.length}
+        </p>
       )}
     </React.Fragment>
   );

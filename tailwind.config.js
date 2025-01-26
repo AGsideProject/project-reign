@@ -10,19 +10,19 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        glassWhite: 'rgba(255, 255, 255, 0.18)',
+        glassWhite: "rgba(255, 255, 255, 0.18)",
       },
-      customShadow: '0px 30px 90px rgba(0, 0, 0, 0.4)',
+      customShadow: "0px 30px 90px rgba(0, 0, 0, 0.4)",
       boxShadow: {
-        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-        'custom-lg': '0px 30px 90px rgba(0, 0, 0, 0.4)',
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        "custom-lg": "0px 30px 90px rgba(0, 0, 0, 0.4)",
       },
       screens: {
-        'iphone': '320px',
-        'iphoneMax': '430px',
-        'tablet': '768px',
-        'laptop': '1024px',
-        'desktop': '1280px',
+        iphone: "320px",
+        iphoneMax: "430px",
+        tablet: "768px",
+        laptop: "1024px",
+        desktop: "1280px",
       },
       spacing: {
         "1/12": "8.3333%",
@@ -38,17 +38,32 @@ module.exports = {
         "4/5": "80%",
         "5/6": "83.3333%",
         "11/12": "91.6667%",
-        "full": "100%"
+        full: "100%",
       },
       backdropBlur: {
-        glass: '7.4px', // Add custom blur
-      }
-
+        glass: "7.4px", // Add custom blur
+      },
+      // Add custom animations
+      animation: {
+        "fade-in": "fade-in 0.5s ease-out", // Fade-in animation
+        "zoom-in": "zoom-in 0.5s ease-out", // Zoom-in animation
+      },
+      keyframes: {
+        // Fade-in animation
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        // Zoom-in animation
+        "zoom-in": {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+      },
     },
-
   },
   plugins: [
-    require('tailwindcss-animated'),
+    require("tailwindcss-animated"), // Enable Tailwind CSS Animated
     // require('@tailwindcss/aspect-ratio')
   ],
 };

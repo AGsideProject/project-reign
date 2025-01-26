@@ -7,28 +7,29 @@ import "swiper/css/navigation";
 import "styles/swiper.css";
 import { Pagination, Navigation } from "swiper/modules";
 import AssetsDetailModal from "./asset-modal";
+import CarouselAssets from "./carousel-assets";
 
-const ModelDetailComponent = () => {
+const ModelDetailComponent = ({ data }) => {
   // Initialize state
   const [activeTab, setActiveTab] = useState("polaroid");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const [display, setDisplay] = useState("");
   const url =
     "https://plus.unsplash.com/premium_photo-1664542157691-d0aa8ff453fd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-  const handleViewAsset = (url, id) => {
-    setDisplay(url);
+  const handleViewAsset = (id) => {
     setCurrentIndex(id);
     setOpenModal(true);
   };
+
+  console.log(data, "<<data");
 
   return (
     <>
       {/* //! main carousel */}
       <div className="flex justify-center">
         <div className="w-[90vw] h-[70vh] sm:w-[95vw] lg:w-[90vw] bg-black">
-          <Swiper
+          {/* <Swiper
             // spaceBetween={0} //! gap between photo
             slidesPerView={1}
             // slidespreview={3}
@@ -93,7 +94,8 @@ const ModelDetailComponent = () => {
                 />
               </div>
             </SwiperSlide>
-          </Swiper>
+          </Swiper> */}
+          <CarouselAssets data={data.carousel} />
         </div>
       </div>
       {/* //! main carousel */}
@@ -125,16 +127,24 @@ const ModelDetailComponent = () => {
       {/* START - Content */}
       <div className="mb-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-          {[...Array(17)].map((_, index) => (
+          {data.polaroid.map((item, index) => (
             <div
               key={`assets-${index}`}
-              className="w-full bg-[#555555] flex justify-center items-center cursor-zoom-in"
-              onClick={() => handleViewAsset("/image/5.jpg", index)}
+              className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${
+                item.orientation === "landscape"
+                  ? "lg:col-span-2"
+                  : "lg:col-span-1"
+              }`}
+              onClick={() => handleViewAsset(index)}
             >
               <img
                 alt="mode"
-                src={"/image/5.jpg"}
-                className="w-full aspect-[79/119] object-cover"
+                src={item.img_url}
+                className={`w-full h-full ${
+                  item.orientation === "landscape"
+                    ? "aspect-[16/9]"
+                    : "aspect-[79/119]"
+                } object-cover`}
               />
             </div>
           ))}
@@ -146,7 +156,7 @@ const ModelDetailComponent = () => {
       <AssetsDetailModal
         setCurIndex={setCurrentIndex}
         curIndex={currentIndex}
-        data={[...Array(17)]}
+        data={data.polaroid}
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
       />

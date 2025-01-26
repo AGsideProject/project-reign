@@ -8,6 +8,7 @@ const fetchData = async (endpoint, options = {}) => {
         "Content-Type": "application/json",
       },
       body: options.body || null,
+      next: options.next || undefined,
     }
   );
 

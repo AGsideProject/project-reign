@@ -1,56 +1,34 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import BookingModal from "components/page/form-book";
 
 const Header = () => {
   const router = useRouter();
+  const pathname = usePathname();
+  const gender =
+    pathname.split("models/")[1] || localStorage.getItem("gender") || "";
 
   // Initialize State
-  const [gender, setGender] = useState("");
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
-  // Handle gender
-  const handleGander = (gen) => {
-    if (gender === gen) {
-      localStorage.removeItem("gender");
-      setGender("");
-    } else {
-      localStorage.setItem("gender", gen);
-      setGender(gen);
-      router.push("/model-list");
-    }
-  };
-
-  useEffect(() => {
-    const storedValue = localStorage.getItem("gender");
-    if (storedValue) {
-      setGender(storedValue);
-    }
-  }, []);
 
   return (
     <>
       <div>
         <div className="flex justify-between items-center md:py-5 py-4 px-7">
           <div className="hidden items-center gap-8 md:flex">
-            <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-                gender === "female" ? "text-[#FF8C00]" : "text-black"
-              }`}
-              onClick={() => handleGander("female")}
-            >
-              FEMALE
-            </h2>
-            <h2
-              className={`text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-                gender === "male" ? "text-[#FF8C00]" : "text-black"
-              }`}
-              onClick={() => handleGander("male")}
-            >
-              MALE
-            </h2>
+            {["female", "male"].map((el) => (
+              <h2
+                key={`item-head-${el}`}
+                className={`uppercase text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
+                  gender === el ? "text-[#FF8C00]" : "text-black"
+                }`}
+                onClick={() => router.push(`/models/${el}`)}
+              >
+                {el}
+              </h2>
+            ))}
           </div>
 
           <img
@@ -87,24 +65,18 @@ const Header = () => {
             {openDropdown && (
               <div className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                 <div className="py-1" role="none">
-                  <p
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    onClick={() => {
-                      handleGander("male");
-                      setOpenDropdown(false);
-                    }}
-                  >
-                    MALE
-                  </p>
-                  <p
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    onClick={() => {
-                      handleGander("female");
-                      setOpenDropdown(false);
-                    }}
-                  >
-                    FEMALE
-                  </p>
+                  {["female", "male"].map((el) => (
+                    <p
+                      key={`item-head-${el}`}
+                      className="uppercase block px-4 py-2 text-sm text-gray-700"
+                      onClick={() => {
+                        router.push(`/models/${el}`);
+                        setOpenDropdown(false);
+                      }}
+                    >
+                      {el}
+                    </p>
+                  ))}
                 </div>
               </div>
             )}
