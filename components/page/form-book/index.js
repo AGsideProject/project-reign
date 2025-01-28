@@ -46,13 +46,13 @@ const FormBookModal = ({ isOpen, onClose, modelName }) => {
     setLoading(false);
     setFormData(initform);
     onClose();
+    setIsSend(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     // Validation
-    
 
     setLoading(true);
     try {
