@@ -1,18 +1,22 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookingModal from "components/page/form-book";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const gender =
-    pathname.split("models/")[1] || localStorage.getItem("gender") || "";
+  const [gender, setGender] = useState("");
   const modelName = pathname.split("model/")[1] || "";
 
   // Initialize State
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    const storedGender = localStorage.getItem("gender") || "";
+    setGender(pathname.split("models/")[1] || storedGender);
+  }, [pathname]);
 
   return (
     <>

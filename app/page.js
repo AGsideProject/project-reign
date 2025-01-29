@@ -19,7 +19,7 @@ const Home = () => {
         <div className="flex justify-between items-center py-8 px-6">
           <div className="flex items-center  md:gap-8 gap-4">
             {["female", "male"].map((type, index) => (
-              <Link href={`/models/${type}`}>
+              <Link href={`/models/${type}`} key={`${type}-${index}`}>
                 <h2
                   key={`model-${type}-${index}`}
                   className="uppercase text-sm font-medium cursor-pointer hover:text-black transition-colors duration-300 text-white"
