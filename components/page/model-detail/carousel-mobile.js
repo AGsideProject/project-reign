@@ -48,11 +48,10 @@ const CarouselAssets = ({
               <img
                 src={element.img_url}
                 alt={`assets-model-${index}`}
-                className={`${
-                  element.orientation === "landscape"
-                    ? "object-contain"
-                    : "object-cover"
-                } w-full h-full`}
+                className={`${element.orientation === "landscape"
+                  ? "object-contain"
+                  : "object-cover"
+                  } w-full h-full`}
               />
             </div>
           </SwiperSlide>

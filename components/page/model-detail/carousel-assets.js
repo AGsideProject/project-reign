@@ -45,8 +45,9 @@ const CarouselAssets = ({ data }) => {
       }}
       loop={false}
       modules={[Navigation, Pagination]}
+      className="w-[55vw]"
     >
-      {data.map((element, index) => (
+      {/* {data.map((element, index) => (
         <SwiperSlide
           key={`carousel-assets-${index}`}
           style={{
@@ -61,7 +62,25 @@ const CarouselAssets = ({ data }) => {
             />
           </div>
         </SwiperSlide>
+      ))} */}
+      {data.map((element, index) => (
+        <SwiperSlide
+          key={`carousel-assets-${index}`}
+          style={{
+            width: element.orientation === "portrait" ? "50%" : "100%",
+            // aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
+            aspectRatio: 'auto'
+          }}
+        >
+          <div className="flex justify-center items-center">
+            <img
+              src={element.img_url}
+              alt={`assets-model-${index}`}
+            />
+          </div>
+        </SwiperSlide>
       ))}
+
     </Swiper>
   );
 };

@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import reignLogo from "public/image/reignLogo.jpg";
 import Loading from "./loading";
+import useDeviceType from "hooks/use-device";
 
 const ModelListComponent = ({ modelGender }) => {
+  const device = useDeviceType();
   const router = useRouter();
   const { ref } = useInView("model");
 
@@ -36,13 +38,13 @@ const ModelListComponent = ({ modelGender }) => {
   if (listModel.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-[70vh] text-center">
-        <Image
+        {/* <Image
           src={reignLogo}
           alt="Placeholder Logo"
           width={150}
           height={150}
           className="mb-5"
-        />
+        /> */}
         <h1 className="text-2xl font-semibold text-gray-700 mb-3">
           No Models Found
         </h1>
@@ -64,18 +66,14 @@ const ModelListComponent = ({ modelGender }) => {
     <React.Fragment>
       <section
         ref={ref}
-        className="grid grid-cols-1 md:grid-cols-4 p-5 md:p-10 gap-5"
+        className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-3"} md:grid-cols-4 p-5 md:p-10 gap-5`}
       >
-        {/* REIGN DATA */}
         {listModel.map((item, index) => {
           return (
             <motion.div
-              onClick={() => {
-                router.push(`/model/${item.slug}`);
-                localStorage.setItem("gender", item.gender);
-              }}
+              onClick={() => router.push(`/model/${item.slug}`)}
               key={index}
-              className="overflow-hidden cursor-pointer group"
+              className="overflow-hidden"
               variants={{
                 hidden: { opacity: 0, y: 75 },
                 visible: { opacity: 1, y: 0 },
@@ -87,21 +85,27 @@ const ModelListComponent = ({ modelGender }) => {
                 once: true,
               }}
             >
-              {/* IMAGE CONTAINER */}
-              <div className="relative aspect-[4/5] bg-white overflow-hidden">
-                {/* BACKGROUND IMAGE */}
+              <div className="relative aspect-[4/5] bg-white">
+                <Image
+                  src={reignLogo}
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="center"
+                  priority
+                  placeholder="blur"
+                />
+
                 <Image
                   src={item.cover_img}
                   alt="model name"
                   layout="fill"
                   objectFit="cover"
+                  // priority
                   placeholder="blur"
                   blurDataURL={item.cover_img}
-                  className="transition-transform duration-500 group-hover:scale-110"
                 />
-                {/* GRADIENT OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                {/* MODEL DETAILS OVERLAY */}
+
                 <motion.div
                   variants={{
                     hidden: {
@@ -116,30 +120,66 @@ const ModelListComponent = ({ modelGender }) => {
                     },
                   }}
                   initial="hidden"
+                  // intial='visible'
                   whileHover="visible"
-                  className="absolute w-full h-full bg-white/70 top-0 text-black flex flex-col justify-center items-center opacity-90 gap-3 md:gap-2 xl:gap-5 2xl:gap-8"
+                  className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
                 >
-                  <p className="text-sm md:text-xs xl:text-base 2xl:text-2xl text-center font-light">
-                    Height: <span className="font-thin">{item.hight} CM</span>
-                    <br />
-                    Bust: <span className="font-thin">{item.bust} CM</span>
-                    <br />
-                    Waist: <span className="font-thin">{item.waist} CM</span>
-                    <br />
-                    Hips: <span className="font-thin">{item.hips} CM</span>
-                    <br />
-                    Shoe size:{" "}
-                    <span className="font-thin">{item.shoe_size}</span>
-                  </p>
+                  <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
+                    <div>
+                      <p className="font-medium">HEIGHT</p>
+                    </div>
+                    <div>
+                      <p className="font-light">{item.hight} CM</p>
+                    </div>
+
+                    <div>
+                      <p className="font-medium">BUST</p>
+                    </div>
+                    <div>
+                      <p className="font-light">{item.bust} CM</p>
+                    </div>
+
+                    <div>
+                      <p className="font-medium">WAIST</p>
+                    </div>
+                    <div>
+                      <p className="font-light">{item.waist} CM</p>
+                    </div>
+
+                    <div>
+                      <p className="font-medium">HIPS</p>
+                    </div>
+                    <div>
+                      <p className="font-light">{item.hips} CM</p>
+                    </div>
+
+                    <div>
+                      <p className="font-medium">SHOE</p>
+                    </div>
+                    <div>
+                      <p className="font-light">{item.shoe_size} US</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">EYES</p>
+                    </div>
+                    <div>
+                      <p className="first-letter:uppercase font-light">{item.eyes}</p>
+                    </div>
+
+                    <div>
+                      <p className="font-medium">HAIR</p>
+                    </div>
+                    <div>
+                      <p className="first-letter:uppercase font-light">{item.hair}</p>
+                    </div>
+
+                  </div>
+
                 </motion.div>
-                ;
               </div>
 
-              {/* MODEL NAME */}
-              <div className="flex items-center justify-center my-4">
-                <p className="text-xl font-medium transition-colors duration-300 group-hover:text-gray-600">
-                  {item.name}
-                </p>
+              <div className="flex items-center justify-center my-5 ">
+                <p className="text-xl">{item.name}</p>
               </div>
             </motion.div>
           );
