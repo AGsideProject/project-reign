@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import BookingModal from "components/page/form-book";
 import Link from "next/link";
@@ -7,13 +7,30 @@ import Link from "next/link";
 const Home = () => {
   // Initialize State
   const [openModal, setOpenModal] = useState(false);
-
+  const [homeImg, setHomeImg] = useState('/image/home.JPEG')
+  const fetchLandingPageImg = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/assets/landingpage`
+      );
+      const result = await response.json();
+      // console.log(result, "<res")
+      setHomeImg(result.data.img_url)
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    fetchLandingPageImg()
+  }, [])
   return (
     <>
       <div
         className="w-screen h-screen bg-cover bg-center relative"
         style={{
-          backgroundImage: "url('/image/home.JPEG')",
+          // backgroundImage: "url('/image/home.JPEG')",
+          backgroundImage: `url('${homeImg}')`,
         }}
       >
         <div className="flex justify-between items-center py-8 px-6">
