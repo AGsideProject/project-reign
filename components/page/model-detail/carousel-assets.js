@@ -12,16 +12,16 @@ const CarouselAssets = ({ data }) => {
 
   return (
     <Swiper
-      slidesPerView={"auto"}
+      slidesPerView="auto"
       slidesPerGroup={1}
-      navigation={false}
+      navigation
       pagination={{
         clickable: true,
         dynamicBullets: true,
       }}
       scrollbar={{ draggable: true }}
       onSwiper={setSwiperInstance}
-      onActiveIndexChange={(event) => {
+      onSlideChange={(event) => {
         if (!swiperInstance) return;
         const { activeIndex, swipeDirection } = event;
         const orCurrent = data[activeIndex]?.orientation;
@@ -69,18 +69,14 @@ const CarouselAssets = ({ data }) => {
           style={{
             width: element.orientation === "portrait" ? "50%" : "100%",
             // aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
-            aspectRatio: 'auto'
+            aspectRatio: "auto",
           }}
         >
           <div className="flex justify-center items-center">
-            <img
-              src={element.img_url}
-              alt={`assets-model-${index}`}
-            />
+            <img src={element.img_url} alt={`assets-model-${index}`} />
           </div>
         </SwiperSlide>
       ))}
-
     </Swiper>
   );
 };
