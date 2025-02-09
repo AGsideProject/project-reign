@@ -12,6 +12,8 @@ const ModelListComponent = ({ modelGender }) => {
   const router = useRouter();
   const { ref } = useInView("model");
 
+  const [isHovered, setIsHovered] = useState(false);
+
   // Initialize state
   const [listModel, setListModel] = useState(null);
 
@@ -107,6 +109,25 @@ const ModelListComponent = ({ modelGender }) => {
                 />
 
                 <motion.div
+                  // variants={{
+                  //   hidden: {
+                  //     opacity: 0,
+                  //   },
+                  //   visible: {
+                  //     opacity: 1,
+                  //     transition: {
+                  //       duration: 0.5,
+                  //       ease: "easeInOut",
+                  //     },
+                  //   },
+                  // }}
+                  // initial="hidden"
+                  // // intial='visible'
+                  // whileHover="visible"
+                  // className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
+
+
+                  //! baru 
                   variants={{
                     hidden: {
                       opacity: 0,
@@ -120,8 +141,11 @@ const ModelListComponent = ({ modelGender }) => {
                     },
                   }}
                   initial="hidden"
-                  // intial='visible'
-                  whileHover="visible"
+                  animate={isHovered ? "visible" : "hidden"}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onTouchStart={() => setIsHovered(true)}
+                  onTouchEnd={() => setIsHovered(false)}
                   className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
                 >
                   <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
@@ -175,10 +199,14 @@ const ModelListComponent = ({ modelGender }) => {
 
                   </div>
 
+                  <div className="absolute bottom-0 mb-5 ml-5 border-white border-b-[1px]">
+                    <p className="text-white text-xl">{item.name}</p>
+                  </div>
+
                 </motion.div>
               </div>
 
-              <div className="flex items-center justify-center my-5 ">
+              <div className="sm:hidden flex items-center justify-center my-5 ">
                 <p className="text-xl">{item.name}</p>
               </div>
             </motion.div>
