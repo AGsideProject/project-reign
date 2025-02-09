@@ -13,6 +13,7 @@ const ModelListComponent = ({ modelGender }) => {
   const { ref } = useInView("model");
 
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // Initialize state
   const [listModel, setListModel] = useState(null);
@@ -70,7 +71,7 @@ const ModelListComponent = ({ modelGender }) => {
         ref={ref}
         className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-3"} md:grid-cols-4 p-5 md:p-10 gap-5`}
       >
-        {listModel.map((item, index) => {
+        {/* {listModel.map((item, index) => {
           return (
             <motion.div
               onClick={() => router.push(`/model/${item.slug}`)}
@@ -109,25 +110,6 @@ const ModelListComponent = ({ modelGender }) => {
                 />
 
                 <motion.div
-                  // variants={{
-                  //   hidden: {
-                  //     opacity: 0,
-                  //   },
-                  //   visible: {
-                  //     opacity: 1,
-                  //     transition: {
-                  //       duration: 0.5,
-                  //       ease: "easeInOut",
-                  //     },
-                  //   },
-                  // }}
-                  // initial="hidden"
-                  // // intial='visible'
-                  // whileHover="visible"
-                  // className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
-
-
-                  //! baru 
                   variants={{
                     hidden: {
                       opacity: 0,
@@ -141,11 +123,8 @@ const ModelListComponent = ({ modelGender }) => {
                     },
                   }}
                   initial="hidden"
-                  animate={isHovered ? "visible" : "hidden"}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onTouchStart={() => setIsHovered(true)}
-                  onTouchEnd={() => setIsHovered(false)}
+                  // intial='visible'
+                  whileHover="visible"
                   className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
                 >
                   <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
@@ -207,6 +186,88 @@ const ModelListComponent = ({ modelGender }) => {
               </div>
 
               <div className="sm:hidden flex items-center justify-center my-5 ">
+                <p className="text-xl">{item.name}</p>
+              </div>
+            </motion.div>
+          );
+        })} */}
+        {/* //! BARU */}
+
+        {listModel.map((item, index) => {
+          return (
+            <motion.div
+              onClick={() => router.push(`/model/${item.slug}`)}
+              key={index}
+              className="overflow-hidden"
+              variants={{
+                hidden: { opacity: 0, y: 75 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative aspect-[4/5] bg-white">
+                <Image
+                  src={reignLogo}
+                  alt="Logo"
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="center"
+                  priority
+                  placeholder="blur"
+                />
+
+                <Image
+                  src={item.cover_img}
+                  alt="model name"
+                  layout="fill"
+                  objectFit="cover"
+                  placeholder="blur"
+                  blurDataURL={item.cover_img}
+                />
+
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { duration: 0.5, ease: "easeInOut" },
+                    },
+                  }}
+                  initial="hidden"
+                  animate={hoveredIndex === index ? "visible" : "hidden"} // Track specific card
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onTouchStart={() => setHoveredIndex(index)}
+                  onTouchEnd={() => setHoveredIndex(null)}
+                  className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
+                >
+                  <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
+                    <div><p className="font-medium">HEIGHT</p></div>
+                    <div><p className="font-light">{item.hight} CM</p></div>
+                    <div><p className="font-medium">BUST</p></div>
+                    <div><p className="font-light">{item.bust} CM</p></div>
+                    <div><p className="font-medium">WAIST</p></div>
+                    <div><p className="font-light">{item.waist} CM</p></div>
+                    <div><p className="font-medium">HIPS</p></div>
+                    <div><p className="font-light">{item.hips} CM</p></div>
+                    <div><p className="font-medium">SHOE</p></div>
+                    <div><p className="font-light">{item.shoe_size} US</p></div>
+                    <div><p className="font-medium">EYES</p></div>
+                    <div><p className="first-letter:uppercase font-light">{item.eyes}</p></div>
+                    <div><p className="font-medium">HAIR</p></div>
+                    <div><p className="first-letter:uppercase font-light">{item.hair}</p></div>
+                  </div>
+
+                  <div className="absolute bottom-0 mb-5 ml-5 border-white border-b-[1px]">
+                    <p className="text-white text-xl">{item.name}</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="sm:hidden flex items-center justify-center my-5">
                 <p className="text-xl">{item.name}</p>
               </div>
             </motion.div>
