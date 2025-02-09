@@ -68,8 +68,10 @@ const CarouselAssets = ({ data }) => {
           key={`carousel-assets-${index}`}
           style={{
             width: element.orientation === "portrait" ? "50%" : "100%",
-            // aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
-            aspectRatio: 'auto'
+            //! yang ini aman tapi kepotong dikit yang 3/4
+            aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
+            //! yang ini keliatan white blankspace tapi udh auto ngitung fotonya
+            // aspectRatio: 'auto',
           }}
         >
           <div className="flex justify-center items-center">
