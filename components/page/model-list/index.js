@@ -69,7 +69,7 @@ const ModelListComponent = ({ modelGender }) => {
     <React.Fragment>
       <section
         ref={ref}
-        className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-3"} md:grid-cols-4 p-5 md:p-10 gap-5`}
+        className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-2"} md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 p-5 md:p-10 gap-5`}
       >
         {/* {listModel.map((item, index) => {
           return (
@@ -193,6 +193,9 @@ const ModelListComponent = ({ modelGender }) => {
         })} */}
         {/* //! BARU */}
 
+        {/* <div className="aspect-[4/5] bg-black sm:bg-red-500 md:bg-yellow-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-indigo-500 flex items-center justify-center">
+          <p className="text-3xl uppercase">{device}</p>
+        </div> */}
         {listModel.map((item, index) => {
           return (
             <motion.div
@@ -237,12 +240,12 @@ const ModelListComponent = ({ modelGender }) => {
                     },
                   }}
                   initial="hidden"
-                  animate={hoveredIndex === index ? "visible" : "hidden"} // Track specific card
+                  animate={hoveredIndex === index ? "visible" : "hidden"}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onTouchStart={() => setHoveredIndex(index)}
                   onTouchEnd={() => setHoveredIndex(null)}
-                  className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 gap-3 md:gap-2 xl:gap-1 2xl:gap-8"
+                  className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90"
                 >
                   <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
                     <div><p className="font-medium">HEIGHT</p></div>
@@ -261,15 +264,15 @@ const ModelListComponent = ({ modelGender }) => {
                     <div><p className="first-letter:uppercase font-light">{item.hair}</p></div>
                   </div>
 
-                  <div className="absolute bottom-0 mb-5 ml-5 border-white border-b-[1px]">
-                    <p className="text-white text-xl">{item.name}</p>
+                  <div className="absolute bottom-0 mb-5 ml-5 ">
+                    <p className="text-white text-2xl">{item.name}</p>
                   </div>
                 </motion.div>
               </div>
 
-              <div className="sm:hidden flex items-center justify-center my-5">
+              {/* <div className="sm:hidden flex items-center justify-center my-5">
                 <p className="text-xl">{item.name}</p>
-              </div>
+              </div> */}
             </motion.div>
           );
         })}
