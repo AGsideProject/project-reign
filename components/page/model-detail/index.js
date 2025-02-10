@@ -216,11 +216,11 @@ const ModelDetailComponent = ({ data }) => {
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
-                className={`relative w-full bg-[#555555] flex justify-center items-center cursor-pointer aspect-[3/4]`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open(item.redirect, "_blank");
-                }}
+                className={`relative w-full bg-[#555555] flex justify-center items-center aspect-[3/4]`}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   window.open(item.redirect, "_blank");
+              // }}
               >
                 <Image
                   src={item.img_url}
