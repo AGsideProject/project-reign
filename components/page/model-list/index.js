@@ -193,9 +193,9 @@ const ModelListComponent = ({ modelGender }) => {
         })} */}
         {/* //! BARU */}
 
-        <div className="aspect-[4/5] bg-black sm:bg-red-500 md:bg-yellow-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-indigo-500 flex items-center justify-center">
+        {/* <div className="aspect-[4/5] bg-black sm:bg-red-500 md:bg-yellow-500 lg:bg-green-500 xl:bg-blue-500 2xl:bg-indigo-500 flex items-center justify-center">
           <p className="text-3xl uppercase">{device}</p>
-        </div>
+        </div> */}
         {listModel.map((item, index) => {
           return (
             <motion.div
