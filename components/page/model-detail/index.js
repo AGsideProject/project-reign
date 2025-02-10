@@ -8,11 +8,11 @@ import { useRouter } from "next/navigation";
 
 const ModelDetailComponent = ({ data }) => {
   // Initialize state
-  const router = useRouter()
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("polaroid");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const [photos, setPhotos] = useState(data?.polaroid || [])
+  const [photos, setPhotos] = useState(data?.polaroid || []);
   const handleViewAsset = (id) => {
     setCurrentIndex(id);
     setOpenModal(true);
@@ -20,10 +20,8 @@ const ModelDetailComponent = ({ data }) => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setPhotos(tab === "polaroid" ? data.polaroid : data.instagram)
+    setPhotos(tab === "polaroid" ? data.polaroid : data.instagram);
   };
-  console.log(activeTab, "<")
-  console.log(data, "< data")
   return (
     <div className="mb-20">
       {/* //! main carousel */}
@@ -159,7 +157,6 @@ const ModelDetailComponent = ({ data }) => {
           <p className="first-letter:uppercase font-medium">{data.hair}</p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
-
       </div>
       {/* START - Assets  */}
       <div className="flex justify-center mt-10 mb-10">
@@ -171,8 +168,9 @@ const ModelDetailComponent = ({ data }) => {
                 <div
                   key={`assets-type-${el}`}
                   onClick={() => handleTabChange(el)}
-                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${activeTab === el ? "border-black" : "border-white"
-                    }`}
+                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${
+                    activeTab === el ? "border-black" : "border-white"
+                  }`}
                 >
                   <p className="font-thin uppercase tracking-[.25em] text-xl text-center sm:font-normal">
                     {el}
@@ -186,47 +184,43 @@ const ModelDetailComponent = ({ data }) => {
 
       {/* START - Content */}
       <div className="mb-10">
-        {
-          activeTab === "polaroid" &&
+        {activeTab === "polaroid" && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
-                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${item.orientation === "landscape"
-                  ? "lg:col-span-2"
-                  : "lg:col-span-1"
-                  }`}
+                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${
+                  item.orientation === "landscape"
+                    ? "lg:col-span-2"
+                    : "lg:col-span-1"
+                }`}
                 onClick={() => handleViewAsset(index)}
               >
                 <img
                   alt="mode"
                   src={item.img_url}
-                  className={`w-full h-full ${item.orientation === "landscape"
-                    ? "aspect-[16/9]"
-                    : "aspect-[79/119]"
-                    } object-cover`}
+                  className={`w-full h-full ${
+                    item.orientation === "landscape"
+                      ? "aspect-[16/9]"
+                      : "aspect-[79/119]"
+                  } object-cover`}
                 />
               </div>
             ))}
           </div>
-        }
-        {
-          activeTab === "instagram" &&
+        )}
+        {activeTab === "instagram" && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
                 className={`relative w-full bg-[#555555] flex justify-center items-center aspect-[3/4]`}
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   window.open(item.redirect, "_blank");
-              // }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   window.open(item.redirect, "_blank");
+                // }}
               >
-                <Image
-                  src={item.img_url}
-                  fill={true}
-                  objectFit="cover"
-                />
+                <Image src={item.img_url} fill={true} objectFit="cover" />
                 {/* <div className="w-full absolute bottom-0 bg-white/50">
                   <div className="flex flex-row justify-center gap-5">
                     Likes : {item.likes > 0 ? item.likes : "hidden"}
@@ -237,8 +231,7 @@ const ModelDetailComponent = ({ data }) => {
               </div>
             ))}
           </div>
-        }
-
+        )}
       </div>
       {/* END - Content */}
 

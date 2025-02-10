@@ -43,39 +43,47 @@ const CarouselAssets = ({ data }) => {
           swiperInstance.slidePrev();
         }
       }}
+      onNavigationNext={(swiper) => {
+        if (!swiperInstance) return;
+        const { activeIndex } = swiper;
+        const orCurrent = data[activeIndex]?.orientation;
+        const orNext = data[activeIndex + 1]?.orientation;
+
+        if (orCurrent === "portrait" && orNext === "landscape") {
+          swiperInstance.slideNext();
+        }
+      }}
+      onNavigationPrev={(swiper) => {
+        if (!swiperInstance) return;
+        const { activeIndex } = swiper;
+        const orCurrent = data[activeIndex]?.orientation;
+        const orNext = data[activeIndex + 1]?.orientation;
+
+        if (orCurrent === "portrait" && orNext === "landscape") {
+          swiperInstance.slidePrev();
+        }
+      }}
       loop={false}
       modules={[Navigation, Pagination]}
       className="w-[55vw]"
     >
-      {/* {data.map((element, index) => (
-        <SwiperSlide
-          key={`carousel-assets-${index}`}
-          style={{
-            width: element.orientation === "portrait" ? "50%" : "100%",
-          }}
-        >
-          <div className="h-[80vh] flex justify-center items-center">
-            <img
-              src={element.img_url}
-              alt={`assets-model-${index}`}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </SwiperSlide>
-      ))} */}
       {data.map((element, index) => (
         <SwiperSlide
           key={`carousel-assets-${index}`}
           style={{
             width: element.orientation === "portrait" ? "50%" : "100%",
             //! yang ini aman tapi kepotong dikit yang 3/4
-            aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
+            // aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
             //! yang ini keliatan white blankspace tapi udh auto ngitung fotonya
-            // aspectRatio: 'auto',
+            aspectRatio: "auto",
           }}
         >
-          <div className="flex justify-center items-center">
-            <img src={element.img_url} alt={`assets-model-${index}`} />
+          <div className="flex justify-center items-center xl:h-[73vh]">
+            <img
+              src={element.img_url}
+              alt={`assets-model-${index}`}
+              className="object-cover w-full h-full"
+            />
           </div>
         </SwiperSlide>
       ))}
