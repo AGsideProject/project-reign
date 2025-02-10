@@ -7,36 +7,39 @@ import Link from "next/link";
 const Home = () => {
   // Initialize State
   const [openModal, setOpenModal] = useState(false);
-  const [homeImg, setHomeImg] = useState('/image/home.JPEG')
+  const [homeImg, setHomeImg] = useState("/image/cover-home.JPEG");
   const fetchLandingPageImg = async () => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/assets/landingpage`
       );
       const result = await response.json();
-      // console.log(result, "<res")
-      setHomeImg(result.data.img_url)
+
+      setHomeImg(result.data.img_url);
       return result;
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   useEffect(() => {
-    fetchLandingPageImg()
-  }, [])
+    fetchLandingPageImg();
+  }, []);
   return (
     <>
       <div
         className="w-screen h-screen bg-cover bg-center relative"
         style={{
-          // backgroundImage: "url('/image/home.JPEG')",
           backgroundImage: `url('${homeImg}')`,
         }}
       >
         <div className="flex justify-between items-center py-8 px-6">
           <div className="flex items-center  md:gap-8 gap-4">
             {["female", "male"].map((type, index) => (
-              <Link href={`/models/${type}`} key={`${type}-${index}`}>
+              <Link
+                href={`/models/${type}`}
+                key={`${type}-${index}`}
+                onClick={() => localStorage.setItem("gender", type)}
+              >
                 <h2
                   key={`model-${type}-${index}`}
                   className="uppercase text-sm font-medium cursor-pointer hover:text-black transition-colors duration-300 text-white"
