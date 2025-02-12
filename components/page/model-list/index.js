@@ -6,7 +6,11 @@ import { motion, useInView } from "framer-motion";
 import reignLogo from "public/image/reignLogo.jpg";
 import Loading from "./loading";
 import useDeviceType from "hooks/use-device";
+import localFont from "next/font/local";
 
+const resothoExtralight = localFont({
+  src: "../../../public/fonts/ResothoExtralight-9YXJK.otf",
+});
 const ModelListComponent = ({ modelGender }) => {
   const device = useDeviceType();
   const router = useRouter();
@@ -245,9 +249,9 @@ const ModelListComponent = ({ modelGender }) => {
                   onMouseLeave={() => setHoveredIndex(null)}
                   onTouchStart={() => setHoveredIndex(index)}
                   onTouchEnd={() => setHoveredIndex(null)}
-                  className="absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90"
+                  className={`absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 ${resothoExtralight.className}`}
                 >
-                  <div className="grid grid-cols-2 text-sm md:text-xs justify-items-start gap-3 text-white ml-5 mt-5">
+                  <div className="grid grid-cols-2 text-xs md:text-xs justify-items-start items-center gap-y-3 text-white ml-5 mt-5 w-[40%]">
                     <div><p className="font-medium">HEIGHT</p></div>
                     <div><p className="font-light">{item.hight} CM</p></div>
                     <div><p className="font-medium">BUST</p></div>

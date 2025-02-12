@@ -3,11 +3,20 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import BookingModal from "components/page/form-book";
 import Link from "next/link";
+import localFont from "next/font/local";
+
+const butlerLightStencil = localFont({
+  src: "../public/fonts/Butler_Light_Stencil.otf",
+});
+const resothoExtralight = localFont({
+  src: "../public/fonts/ResothoExtralight-9YXJK.otf",
+});
 
 const Home = () => {
   // Initialize State
   const [openModal, setOpenModal] = useState(false);
   const [homeImg, setHomeImg] = useState("/image/cover-home.JPEG");
+
   const fetchLandingPageImg = async () => {
     try {
       const response = await fetch(
@@ -32,8 +41,8 @@ const Home = () => {
           backgroundImage: `url('${homeImg}')`,
         }}
       >
-        <div className="flex justify-between items-center py-8 px-6">
-          <div className="flex items-center  md:gap-8 gap-4">
+        <div className={`flex justify-between items-center py-8 px-6 ${resothoExtralight.className}`}>
+          <div className={`flex items-center  md:gap-8 gap-4 `}>
             {["female", "male"].map((type, index) => (
               <Link
                 href={`/models/${type}`}
@@ -58,8 +67,15 @@ const Home = () => {
         </div>
 
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-fade animate-once animate-duration-[5500ms] animate-ease-in-out">
-          <Image
+          {/* <Image
             src="/next.svg"
+            alt="Next.js logo"
+            width={460}
+            height={32}
+            priority
+          /> */}
+          <Image
+            src="/Reign-white.png"
             alt="Next.js logo"
             width={460}
             height={32}

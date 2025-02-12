@@ -2,6 +2,16 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookingModal from "components/page/form-book";
+import Image from "next/image";
+import localFont from "next/font/local";
+
+const butlerLightStencil = localFont({
+  src: "../../public/fonts/Butler_Light_Stencil.otf",
+});
+
+const resothoExtralight = localFont({
+  src: "../../public/fonts/ResothoExtralight-9YXJK.otf",
+});
 
 const Header = () => {
   const router = useRouter();
@@ -23,14 +33,13 @@ const Header = () => {
   return (
     <>
       <div>
-        <div className="flex justify-between items-center md:py-5 py-4 px-7">
-          <div className="hidden items-center gap-8 md:flex">
+        <div className={`flex justify-between items-center md:py-5 py-4 px-7 ${resothoExtralight.className}`}>
+          <div className={`hidden items-center gap-8 md:flex`}>
             {["female", "male"].map((el) => (
               <h2
                 key={`item-head-${el}`}
-                className={`uppercase text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${
-                  gender === el ? "text-[#FF8C00]" : "text-black"
-                }`}
+                className={`uppercase text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === el ? "text-[#FF8C00]" : "text-black"
+                  }`}
                 onClick={() => {
                   router.push(`/models/${el}`);
                   localStorage.setItem("gender", el);
@@ -41,11 +50,19 @@ const Header = () => {
             ))}
           </div>
 
-          <img
-            src="/nextV2.svg"
-            alt="Next.js logo"
-            className="md:h-8 md:w-36 w-28 h-6 cursor-pointer"
+          {/* <img
+            src="/Reign-03-03.svg"
+            alt="Reign logo"
+            className="md:h-36 md:w-52 w-28 h-6 cursor-pointer"
             onClick={() => router.push("/")}
+          /> */}
+          <Image
+            src="/Reign-03-03.svg"
+            alt="Next.js logo"
+            width={80}
+            height={50}
+            onClick={() => router.push("/")}
+            priority
           />
 
           {/* START - Dropdown */}
