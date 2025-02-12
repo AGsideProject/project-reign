@@ -51,7 +51,7 @@ const Home = () => {
               >
                 <h2
                   key={`model-${type}-${index}`}
-                  className="uppercase text-sm font-medium cursor-pointer hover:text-black transition-colors duration-300 text-white"
+                  className="tracking-[.2rem] uppercase text-sm font-medium cursor-pointer hover:text-black transition-colors duration-300 text-white"
                 >
                   {type}
                 </h2>

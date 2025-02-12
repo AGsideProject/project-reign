@@ -187,9 +187,9 @@ const ModelDetailComponent = ({ data }) => {
       </div>
 
       {/* START - Content */}
-      <div className="mb-10">
+      <div className="mb-10 bg-black">
         {activeTab === "polaroid" && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 p-1">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
@@ -212,7 +212,7 @@ const ModelDetailComponent = ({ data }) => {
           </div>
         )}
         {activeTab === "instagram" && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 p-1">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}

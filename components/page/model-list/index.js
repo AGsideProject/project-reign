@@ -11,6 +11,10 @@ import localFont from "next/font/local";
 const resothoExtralight = localFont({
   src: "../../../public/fonts/ResothoExtralight-9YXJK.otf",
 });
+
+const butlerLightStencil = localFont({
+  src: "../../../public/fonts/Butler_Light_Stencil.otf",
+});
 const ModelListComponent = ({ modelGender }) => {
   const device = useDeviceType();
   const router = useRouter();
@@ -252,24 +256,24 @@ const ModelListComponent = ({ modelGender }) => {
                   className={`absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 ${resothoExtralight.className}`}
                 >
                   <div className="grid grid-cols-2 text-xs md:text-xs justify-items-start items-center gap-y-3 text-white ml-5 mt-5 w-[40%]">
-                    <div><p className="font-medium">HEIGHT</p></div>
-                    <div><p className="font-light">{item.hight} CM</p></div>
-                    <div><p className="font-medium">BUST</p></div>
-                    <div><p className="font-light">{item.bust} CM</p></div>
-                    <div><p className="font-medium">WAIST</p></div>
-                    <div><p className="font-light">{item.waist} CM</p></div>
-                    <div><p className="font-medium">HIPS</p></div>
-                    <div><p className="font-light">{item.hips} CM</p></div>
-                    <div><p className="font-medium">SHOE</p></div>
-                    <div><p className="font-light">{item.shoe_size} US</p></div>
-                    <div><p className="font-medium">EYES</p></div>
-                    <div><p className="first-letter:uppercase font-light">{item.eyes}</p></div>
-                    <div><p className="font-medium">HAIR</p></div>
-                    <div><p className="first-letter:uppercase font-light">{item.hair}</p></div>
+                    <div><p className="font-[1000]">HEIGHT</p></div>
+                    <div><p className="font-[100]">{item.hight} CM</p></div>
+                    <div><p className="font-[1000]">BUST</p></div>
+                    <div><p className="font-[100]">{item.bust} CM</p></div>
+                    <div><p className="font-[1000]">WAIST</p></div>
+                    <div><p className="font-[100]">{item.waist} CM</p></div>
+                    <div><p className="font-[1000]">HIPS</p></div>
+                    <div><p className="font-[100]">{item.hips} CM</p></div>
+                    <div><p className="font-[1000]">SHOE</p></div>
+                    <div><p className="font-[100]">{item.shoe_size} US</p></div>
+                    <div><p className="font-[1000]">EYES</p></div>
+                    <div><p className="first-letter:uppercase font-[100]">{item.eyes}</p></div>
+                    <div><p className="font-[1000]">HAIR</p></div>
+                    <div><p className="first-letter:uppercase font-[100]">{item.hair}</p></div>
                   </div>
 
                   <div className="absolute bottom-0 mb-5 ml-5 ">
-                    <p className="text-white text-2xl">{item.name}</p>
+                    <p className={`text-white text-2xl ${butlerLightStencil.className} uppercase`}>{item.name}</p>
                   </div>
                 </motion.div>
               </div>
