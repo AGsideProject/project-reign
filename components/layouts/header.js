@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <>
-      <div>
+      <div className="relative">
         <div className={`flex justify-between items-center md:py-5 py-4 px-7 ${resothoExtralight.className}`}>
           <div className={`hidden items-center gap-8 md:flex`}>
             {["female", "male"].map((el) => (
@@ -57,6 +57,7 @@ const Header = () => {
             onClick={() => router.push("/")}
           /> */}
           <Image
+            className="sm:absolute sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2"
             src="/Reign-03-03.svg"
             alt="Next.js logo"
             width={80}
