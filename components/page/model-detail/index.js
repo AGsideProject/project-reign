@@ -5,6 +5,11 @@ import CarouselAssets from "./carousel-assets";
 import CarouselModal from "./carousel-mobile";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import localFont from "next/font/local";
+
+const resothoExtralight = localFont({
+  src: "../../../public/fonts/ResothoExtralight-9YXJK.otf",
+});
 
 const ModelDetailComponent = ({ data }) => {
   // Initialize state
@@ -23,7 +28,7 @@ const ModelDetailComponent = ({ data }) => {
     setPhotos(tab === "polaroid" ? data.polaroid : data.instagram);
   };
   return (
-    <div className="mb-20">
+    <div className={`mb-20 ${resothoExtralight.className}`}>
       {/* //! main carousel */}
       <div className="flex justify-center">
         {/* Desktop */}
@@ -101,17 +106,17 @@ const ModelDetailComponent = ({ data }) => {
           <div className="bg-black h-[0.5px] w-full"></div>
         </div>
       </div> */}
-      <div className="md:hidden grid grid-cols-2 text-sm md:text-xs justify-items-center w-1/3 m-auto my-10 gap-y-2">
-        <div className="col-span-2 h-1 "></div>
+      <div className="md:hidden grid grid-cols-2 text-sm md:text-xs justify-items-center items-center w-1/2 m-auto my-10 gap-y-2">
+        <div className="col-span-2 h-1"></div>
         <div>
-          <p className="font-light">HEIGHT</p>
+          <p className="font-semibold">HEIGHT</p>
         </div>
         <div>
           <p className="font-medium">{data.hight} CM</p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
         <div>
-          <p className="font-light">BUST</p>
+          <p className="font-semibold">BUST</p>
         </div>
         <div>
           <p className="font-medium">{data.bust} CM</p>
@@ -119,7 +124,7 @@ const ModelDetailComponent = ({ data }) => {
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
         <div>
-          <p className="font-light">WAIST</p>
+          <p className="font-semibold">WAIST</p>
         </div>
         <div>
           <p className="font-medium">{data.waist} CM</p>
@@ -127,7 +132,7 @@ const ModelDetailComponent = ({ data }) => {
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
         <div>
-          <p className="font-light">HIPS</p>
+          <p className="font-semibold">HIPS</p>
         </div>
         <div>
           <p className="font-medium">{data.hips} CM</p>
@@ -135,7 +140,7 @@ const ModelDetailComponent = ({ data }) => {
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
         <div>
-          <p className="font-light">SHOE</p>
+          <p className="font-semibold">SHOE</p>
         </div>
         <div>
           <p className="font-medium">{data.shoe_size} US</p>
@@ -143,23 +148,23 @@ const ModelDetailComponent = ({ data }) => {
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
         <div>
-          <p className="font-light">EYES</p>
+          <p className="font-semibold">EYES</p>
         </div>
         <div>
-          <p className="first-letter:uppercase font-medium">{data.eyes}</p>
+          <p className="first-letter:uppercase font-medium text-center">{data.eyes}</p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
         <div>
-          <p className="font-light">HAIR</p>
+          <p className="font-semibold">HAIR</p>
         </div>
         <div>
-          <p className="first-letter:uppercase font-medium">{data.hair}</p>
+          <p className="first-letter:uppercase font-medium text-center">{data.hair}</p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
       </div>
       {/* START - Assets  */}
-      <div className="flex justify-center mt-10 mb-10">
+      <div className={`flex justify-center mt-10 mb-10 `}>
         <div className="w-[85vw] sm:w-[95vw] lg:w-[85vw]">
           {/* Tabs */}
           <div className="animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out">
@@ -168,9 +173,8 @@ const ModelDetailComponent = ({ data }) => {
                 <div
                   key={`assets-type-${el}`}
                   onClick={() => handleTabChange(el)}
-                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${
-                    activeTab === el ? "border-black" : "border-white"
-                  }`}
+                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${activeTab === el ? "border-black" : "border-white"
+                    }`}
                 >
                   <p className="font-thin uppercase tracking-[.25em] text-xl text-center sm:font-normal">
                     {el}
@@ -189,21 +193,19 @@ const ModelDetailComponent = ({ data }) => {
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
-                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${
-                  item.orientation === "landscape"
-                    ? "lg:col-span-2"
-                    : "lg:col-span-1"
-                }`}
+                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${item.orientation === "landscape"
+                  ? "lg:col-span-2"
+                  : "lg:col-span-1"
+                  }`}
                 onClick={() => handleViewAsset(index)}
               >
                 <img
                   alt="mode"
                   src={item.img_url}
-                  className={`w-full h-full ${
-                    item.orientation === "landscape"
-                      ? "aspect-[16/9]"
-                      : "aspect-[79/119]"
-                  } object-cover`}
+                  className={`w-full h-full ${item.orientation === "landscape"
+                    ? "aspect-[16/9]"
+                    : "aspect-[79/119]"
+                    } object-cover`}
                 />
               </div>
             ))}
@@ -215,10 +217,10 @@ const ModelDetailComponent = ({ data }) => {
               <div
                 key={`assets-${index}`}
                 className={`relative w-full bg-[#555555] flex justify-center items-center aspect-[3/4]`}
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   window.open(item.redirect, "_blank");
-                // }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   window.open(item.redirect, "_blank");
+              // }}
               >
                 <Image src={item.img_url} fill={true} objectFit="cover" />
                 {/* <div className="w-full absolute bottom-0 bg-white/50">
