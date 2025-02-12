@@ -38,7 +38,7 @@ const Header = () => {
             {["female", "male"].map((el) => (
               <h2
                 key={`item-head-${el}`}
-                className={`uppercase text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === el ? "text-[#FF8C00]" : "text-black"
+                className={`tracking-[.2rem] uppercase text-sm font-medium  cursor-pointer hover:text-[#FF8C00] transition-colors duration-300 ${gender === el ? "text-[#FF8C00]" : "text-black"
                   }`}
                 onClick={() => {
                   router.push(`/models/${el}`);
