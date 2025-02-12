@@ -65,7 +65,7 @@ const CarouselAssets = ({ data }) => {
       }}
       loop={false}
       modules={[Navigation, Pagination]}
-      className="w-[55vw]"
+      className="w-[85vw] sm:w-[55vw]"
     >
       {data.map((element, index) => (
         <SwiperSlide

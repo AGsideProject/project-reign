@@ -33,14 +33,15 @@ const ModelDetailComponent = ({ data }) => {
       <div className="flex justify-center">
         {/* Desktop */}
         <div
-          //className="hidden sm:block w-[90vw] h-[80vh] sm:w-[95vw] lg:w-[90vw] bg-black"
-          className="hidden sm:block"
+        //className="hidden sm:block w-[90vw] h-[80vh] sm:w-[95vw] lg:w-[90vw] bg-black"
+        // className="hidden sm:block"
         >
           <CarouselAssets data={data.carousel} />
         </div>
 
         {/* Mobile */}
-        <div className="grid sm:hidden w-[98vw] md:w-[75vw] min-h-[40vh]">
+        {/* //! gak di pake (dulu) */}
+        {/* <div className="grid sm:hidden w-[98vw] md:w-[75vw] min-h-[40vh]">
           <CarouselModal
             showIndicator={false}
             showPagination={true}
@@ -49,63 +50,10 @@ const ModelDetailComponent = ({ data }) => {
             // data={photos}
             className="w-[98vw] md:w-[75vw]"
           />
-        </div>
+        </div> */}
       </div>
       {/* //! main carousel */}
 
-      {/* <div className="flex flex-col justify-center items-center my-10 md:hidden">
-        <div className="flex flex-col gap-3 justify-center items-center  text-sm">
-          <div className="">
-            <p>
-              <span className="font-medium">HEIGHT</span>: {data?.hight}
-              CM
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-          <div className="">
-            <p>
-              <span className="font-medium">BUST</span>: {data?.bust} CM
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-
-          <div className="">
-            <p>
-              <span className="font-medium">WAIST</span>: {data?.waist} CM
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-
-          <div className="">
-            <p>
-              <span className="font-medium">HIPS</span>: {data?.hips} CM
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-
-          <div className="">
-            <p>
-              <span className="font-medium">SHOE</span>: {data?.shoe_size}
-              US
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-
-          <div className="">
-            <p>
-              <span className="font-medium ">EYES</span>: {data?.eyes}
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-
-          <div className="">
-            <p>
-              <span className="font-medium ">HAIR</span>: {data?.hair}
-            </p>
-          </div>
-          <div className="bg-black h-[0.5px] w-full"></div>
-        </div>
-      </div> */}
       <div className="md:hidden grid grid-cols-2 text-sm md:text-xs justify-items-center items-center w-1/2 m-auto my-10 gap-y-2">
         <div className="col-span-2 h-1"></div>
         <div>
