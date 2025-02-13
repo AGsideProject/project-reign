@@ -4,6 +4,12 @@ import { usePathname } from "next/navigation";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import BookingModal from "components/page/form-book";
 
+import localFont from "next/font/local";
+
+const butlerMedium = localFont({
+  src: "../../public/fonts/Butler_Medium.otf",
+})
+
 const Footer = () => {
   const pathname = usePathname();
   const theRef = useRef(null);
@@ -14,7 +20,7 @@ const Footer = () => {
   const [isFix, setIsFixed] = useState(true);
 
   const handleWaMe = () => {
-    window.open(waURL, "_blank"); 
+    window.open(waURL, "_blank");
   };
 
   useEffect(() => {
@@ -31,24 +37,24 @@ const Footer = () => {
         <div className="max-w-[1440px] mx-auto">
           {/* White Section */}
           <div className="p-10 grid md:grid-cols-4 gap-8 text-gray-700 text-sm">
-            <div>
-              <h2 className="font-semibold text-lg mb-4">REIGN MODEL AGENCY</h2>
+            <div className="md:col-span-2">
+              <h2 className={`font-semibold text-lg mb-4 ${butlerMedium.className}`}>REIGN MODELS MANAGEMENT</h2>
               <p>
-                Lorem ipsum is typically a corrupted version of De finibus
-                bonorum et malorum, a 1st-century BC text by the Roman statesman
-                and philosopher Cicero, with words altered, added, and removed
-                to make it nonsensical and improper Latin. The first two words
-                themselves are a truncation of dolorem{" "}
-                <strong>Nonsensical</strong> aipsum bonorum.{" "}
-                <strong>Improper</strong>,<strong>stylists</strong>,{" "}
-                <strong>hair & makeup artists</strong> Lorem ipsum is typically
-                a corrupted.
+                Welcome to Reign, we pride ourselves on our commitment to nurturing talent and we believe that beauty comes in all forms. Founded in 2025, our agency is dedicated to representing diverse, talented models across the globe. We specialize in connecting individuals with unique looks and inspiring stories to brands that appreciate and celebrate authenticity by collaborating with photographers, cinematographers, designers, and creative directors to create stunning campaigns.
               </p>
+              <p className="mt-4">
+                Our mission is to empower models to embrace their individuality while paving the way for the next generation of talent and Reign Model Management is here to bring your vision to life. Let’s collaborate!
+              </p>
+              <div className="mt-4">
+                <a href="#">
+                  <Instagram />
+                </a>
+              </div>
             </div>
-
-            <div>
+            <div></div>
+            {/* <div>
               <h3 className="font-semibold mb-4 text-lg md:mt-0 mt-4">
-                Corporate
+                Social
               </h3>
               <ul>
                 <li>
@@ -83,9 +89,9 @@ const Footer = () => {
                   <Youtube />
                 </a>
               </div>
-            </div>
+            </div> */}
 
-            <div>
+            {/* <div>
               <h3 className="font-semibold mb-4 text-lg md:mt-0 mt-4">
                 Our Office
               </h3>
@@ -104,11 +110,11 @@ const Footer = () => {
                 <br />
                 +62(0)81353519946
               </p>
-            </div>
+            </div> */}
 
             {/* Contact Form */}
             <div>
-              <h3 className="font-semibold mb-4 text-lg md:mt-0 mt-4">
+              <h3 className={`font-semibold mb-4 text-lg md:mt-0 mt-4 ${butlerMedium.className}`}>
                 Contact Us
               </h3>
               <form className="space-y-4">
@@ -154,9 +160,8 @@ const Footer = () => {
 
           {/* Floating Button */}
           <button
-            className={`md:hidden fixed z-40 bottom-6 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${
-              isFix ? "bg-black text-white" : "bg-white text-black"
-            }`}
+            className={`md:hidden fixed z-40 bottom-6 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${isFix ? "bg-black text-white" : "bg-white text-black"
+              }`}
             onClick={() => setOpenModal(true)}
           >
             BOOK A SHOOT
@@ -185,7 +190,7 @@ const Footer = () => {
           onClose={() => setOpenModal(false)}
           modelName={modelName}
         />
-      </div>
+      </div >
     </>
   );
 };

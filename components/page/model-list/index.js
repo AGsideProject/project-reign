@@ -15,6 +15,12 @@ const resothoExtralight = localFont({
 const butlerLightStencil = localFont({
   src: "../../../public/fonts/Butler_Light_Stencil.otf",
 });
+
+const butlerMedium = localFont({
+  src: "../../../public/fonts/Butler_Medium.otf",
+})
+
+
 const ModelListComponent = ({ modelGender }) => {
   const device = useDeviceType();
   const router = useRouter();
@@ -273,7 +279,7 @@ const ModelListComponent = ({ modelGender }) => {
                   </div>
 
                   <div className="absolute bottom-0 mb-5 ml-5 ">
-                    <p className={`text-white text-2xl ${butlerLightStencil.className} uppercase`}>{item.name}</p>
+                    <p className={`text-white text-2xl ${butlerMedium.className} uppercase`}>{item.name}</p>
                   </div>
                 </motion.div>
               </div>
