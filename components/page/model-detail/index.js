@@ -137,13 +137,13 @@ const ModelDetailComponent = ({ data }) => {
       {/* START - Content */}
       <div className="mb-10 bg-black">
         {activeTab === "polaroid" && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 p-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 p-1">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
                 className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${item.orientation === "landscape"
-                  ? "lg:col-span-2"
-                  : "lg:col-span-1"
+                  ? "md:col-span-2"
+                  : "md:col-span-1"
                   }`}
                 onClick={() => handleViewAsset(index)}
               >
@@ -160,7 +160,7 @@ const ModelDetailComponent = ({ data }) => {
           </div>
         )}
         {activeTab === "instagram" && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 p-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 p-1">
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
