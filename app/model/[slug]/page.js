@@ -10,6 +10,11 @@ const butlerLightStencil = localFont({
   src: "../../../public/fonts/Butler_Light_Stencil.otf",
 });
 
+const butlerMedium = localFont({
+  src: "../../../public/fonts/Butler_Medium.otf",
+})
+
+
 const ModelDetailComponent = dynamic(() =>
   import("components/page/model-detail")
 );
@@ -25,7 +30,7 @@ const ModelDetailPage = async ({ params }) => {
           // className="mb-6 animate-fade-right animate-once animate-duration-[3000ms] animate-ease-in-out"
           className="mb-6"
         >
-          <p className={`text-4xl font-medium ${butlerLightStencil.className} tracking-[.7rem] uppercase`}>{response.name}</p>
+          <p className={`text-4xl font-medium ${butlerMedium.className} tracking-[.7rem] uppercase`}>{response.name}</p>
         </div>
 
         <div className="hidden sm:block">
