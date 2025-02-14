@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -9,102 +9,75 @@ import "styles/swiper.css";
 
 const CarouselAssets = ({ data }) => {
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const isSwiping = useRef(false);
+
+  const handleNext = () => {
+    if (!swiperInstance || isSwiping.current) return;
+
+    const { activeIndex } = swiperInstance;
+    const currentOrientation = data[activeIndex]?.orientation;
+
+    if (currentOrientation === "landscape") {
+      swiperInstance.slideNext();
+    } else {
+      swiperInstance.slideTo(activeIndex + 2);
+    }
+  };
+
+  const handlePrev = () => {
+    if (!swiperInstance || isSwiping.current) return;
+
+    const { activeIndex } = swiperInstance;
+    const currentOrientation = data[activeIndex]?.orientation;
+
+    if (data[activeIndex - 1]?.orientation === "landscape") {
+      swiperInstance.slidePrev();
+    } else {
+      swiperInstance.slideTo(activeIndex - 2);
+    }
+  };
+
+  const handleSwipe = (swiper) => {
+    if (!swiperInstance || isSwiping.current) return;
+
+    isSwiping.current = true;
+
+    const { activeIndex } = swiper;
+    const orientationNext = data[activeIndex - 1]?.orientation;
+    const orientationprev = data[activeIndex]?.orientation;
+
+    let targetIndex;
+    if (swiper.swipeDirection === "next") {
+      targetIndex =
+        orientationNext === "landscape" ? activeIndex : activeIndex + 1;
+    } else if (swiper.swipeDirection === "prev") {
+      targetIndex =
+        orientationprev === "landscape" ? activeIndex : activeIndex - 1;
+    }
+
+    if (targetIndex >= 0 && targetIndex < data.length) {
+      swiperInstance.slideTo(targetIndex);
+    }
+
+    setTimeout(() => {
+      isSwiping.current = false;
+    }, 100);
+  };
 
   return (
     <div className="relative">
-
-      {/* //? CAROUSEL SEMENTARA */}
       <Swiper
         slidesPerView="auto"
-        slidesPerGroup={2}
-        navigation
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-        }}
-        scrollbar={{ draggable: true }}
-        loop={false}
-        modules={[Navigation, Pagination]}
-        className="w-[85vw] sm:w-[55vw]"
-      >
-        {data.map((element, index) => (
-          <SwiperSlide
-            key={`carousel-assets-${index}`}
-            style={{
-              width: element.orientation === "portrait" ? "50%" : "100%",
-              //! yang ini aman tapi kepotong dikit yang 3/4
-              aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
-              //! yang ini keliatan white blankspace tapi udh auto ngitung fotonya
-              // aspectRatio: "auto",
-            }}
-          >
-            <div className="flex justify-center items-center xl:h-[73vh]">
-              <img
-                src={element.img_url}
-                alt={`assets-model-${index}`}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      {/* //? CAROUSEL SEMENTARA */}
-
-      {/* //!CAROUSEL ORIGINAL */}
-      {/* <Swiper
-        slidesPerView="auto"
         slidesPerGroup={1}
-        navigation
         pagination={{
           clickable: true,
           dynamicBullets: true,
         }}
         scrollbar={{ draggable: true }}
         onSwiper={setSwiperInstance}
-        onSlideChange={(event) => {
-          if (!swiperInstance) return;
-          const { activeIndex, swipeDirection } = event;
-          const orCurrent = data[activeIndex]?.orientation;
-          const orNext = data[activeIndex + 1]?.orientation;
-
-          if (
-            orCurrent === "portrait" &&
-            orNext === "landscape" &&
-            swipeDirection === "next"
-          ) {
-            swiperInstance.slideNext();
-          }
-
-          if (
-            orCurrent === "portrait" &&
-            orNext === "landscape" &&
-            swipeDirection === "prev"
-          ) {
-            swiperInstance.slidePrev();
-          }
-        }}
-        onNavigationNext={(swiper) => {
-          if (!swiperInstance) return;
-          const { activeIndex } = swiper;
-          const orCurrent = data[activeIndex]?.orientation;
-          const orNext = data[activeIndex + 1]?.orientation;
-
-          if (orCurrent === "portrait" && orNext === "landscape") {
-            swiperInstance.slideNext();
-          }
-        }}
-        onNavigationPrev={(swiper) => {
-          if (!swiperInstance) return;
-          const { activeIndex } = swiper;
-          const orCurrent = data[activeIndex]?.orientation;
-          const orNext = data[activeIndex + 1]?.orientation;
-
-          if (orCurrent === "portrait" && orNext === "landscape") {
-            swiperInstance.slidePrev();
-          }
-        }}
+        onSlideChange={handleSwipe}
         loop={false}
-        modules={[Navigation, Pagination]}
+        modules={[Pagination]}
         className="w-[85vw] sm:w-[55vw]"
       >
         {data.map((element, index) => (
@@ -112,9 +85,6 @@ const CarouselAssets = ({ data }) => {
             key={`carousel-assets-${index}`}
             style={{
               width: element.orientation === "portrait" ? "50%" : "100%",
-              //! yang ini aman tapi kepotong dikit yang 3/4
-              // aspectRatio: element.orientation === "portrait" ? "3/4" : "16/9",
-              //! yang ini keliatan white blankspace tapi udh auto ngitung fotonya
               aspectRatio: "auto",
             }}
           >
@@ -127,23 +97,48 @@ const CarouselAssets = ({ data }) => {
             </div>
           </SwiperSlide>
         ))}
-      </Swiper> */}
-      {/* //!CAROUSEL ORIGINAL */}
+      </Swiper>
 
-      {/* //! BUTTONNYA ( tinggal function do ) */}
-      {/* <div className="absolute top-1/2 -left-1 transform -translate-y-1/2 -translate-x-full flex items-center justify-center text-white z-50 rounded-full">
+      {/* Custom Navigation Buttons */}
+      <button
+        className="absolute top-1/2 -left-1 transform -translate-y-1/2 -translate-x-full flex items-center justify-center text-white z-50 rounded-full"
+        onClick={handlePrev}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-chevron-left"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </button>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" ><path d="m15 18-6-6 6-6" /></svg>
-
-      </div>
-
-      <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 translate-x-full flex items-center justify-center text-white z-50 rounded-full">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
-
-      </div> */}
-      {/* //! BUTTONNYA ( tinggal function do ) */}
-
+      <button
+        className="absolute top-1/2 -right-1 transform -translate-y-1/2 translate-x-full flex items-center justify-center text-white z-50 rounded-full"
+        onClick={handleNext}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-chevron-right"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
     </div>
   );
 };
