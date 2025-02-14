@@ -40,7 +40,7 @@ const ModelDetailPage = async ({ params }) => {
               <p className="font-[100] text-slate-800">: {response.hight} CM</p>
             </div>
             <div className="flex">
-              <p className="font-[1000]">BUST </p>
+              <p className="font-[1000]">{response.gender === 'male' ? "CHEST ":'BUST '}</p>
               <p className="font-[100] text-slate-800">: {response.bust} CM</p>
             </div>
             <div className="flex">

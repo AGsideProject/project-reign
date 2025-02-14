@@ -264,7 +264,7 @@ const ModelListComponent = ({ modelGender }) => {
                   <div className="grid grid-cols-2 text-xs md:text-xs justify-items-start items-center gap-y-3 text-white ml-5 mt-5 w-[40%]">
                     <div><p className="font-[1000]">HEIGHT</p></div>
                     <div><p className="font-[100]">{item.hight} CM</p></div>
-                    <div><p className="font-[1000]">BUST</p></div>
+                    <div><p className="font-[1000]">{item.gender === 'male' ? "CHEST":'BUST'}</p></div>
                     <div><p className="font-[100]">{item.bust} CM</p></div>
                     <div><p className="font-[1000]">WAIST</p></div>
                     <div><p className="font-[100]">{item.waist} CM</p></div>

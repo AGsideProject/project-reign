@@ -64,7 +64,7 @@ const ModelDetailComponent = ({ data }) => {
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
         <div>
-          <p className="font-semibold">BUST</p>
+          <p className="font-semibold">{data.gender === 'male' ? "CHEST":'BUST'}</p>
         </div>
         <div>
           <p className="font-medium">{data.bust} CM</p>
