@@ -149,7 +149,7 @@ const Footer = () => {
           {/* Floating Wa */}
           <button
             onClick={handleWaMe}
-            className="fixed z-40 md:bottom-8 bottom-20 right-6 flex justify-center items-center h-[60px] w-[60px] rounded-full bg-[#4CD140] transition-all hover:shadow-lg"
+            className="fixed z-40 md:bottom-8 bottom-20 right-6 flex justify-center items-center h-[60px] w-[60px] rounded-full bg-[#0f110f] transition-all hover:shadow-lg"
           >
             <img
               alt="whatsapp"
@@ -169,9 +169,9 @@ const Footer = () => {
         </div>
 
         {/* Black Section */}
-        <div ref={theRef} className="bg-black text-white text-center py-5">
-          <p>
-            Reign Model Agency Lorem ipsum is typically a corrupted version of{" "}
+        <div ref={theRef} className="bg-black h-10">
+          {/* <p>
+            Reign Model Agency{" "}
             <a href="#" className="underline">
               Youtube
             </a>{" "}
@@ -181,7 +181,8 @@ const Footer = () => {
             </a>
             , a Bali-based business development group.
           </p>
-          <p>Copyright © 2024. All rights reserved</p>
+          <p>Copyright © 2024. All rights reserved</p> */}
+          {/* REIGN MODELS MANAGEMENT */}
         </div>
 
         {/* Modals Book */}
