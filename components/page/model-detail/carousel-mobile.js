@@ -14,6 +14,7 @@ const CarouselAssets = ({
   curIndex,
   data,
   className,
+  onClose,
 }) => {
   const modules = [Navigation];
   if (showPagination) modules.push(Pagination);
@@ -44,15 +45,14 @@ const CarouselAssets = ({
       >
         {data.map((element, index) => (
           <SwiperSlide key={`carousel-assets-${index}`}>
-            <div className="h-[70vh] flex justify-center items-center">
-              <img
-                src={element.img_url}
-                alt={`assets-model-${index}`}
-                className={`${element.orientation === "landscape"
-                  ? "object-contain"
-                  : "object-cover"
-                  } w-full h-full`}
-              />
+            <div className="max-h-[85vh] flex justify-center items-center">
+              <div className="relative">
+                <img
+                  src={element.img_url}
+                  alt={`assets-model-${index}`}
+                  className="object-contain w-full h-full"
+                />
+              </div>
             </div>
           </SwiperSlide>
         ))}

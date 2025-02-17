@@ -62,9 +62,9 @@ const AssetsDetailModal = ({
         {/* The Asset */}
         <div className="relative">
           <div
-            className={`flex shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw] ${aspectRatioClass}`}
+            className={`flex shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw] ${aspectRatioClass} justify-center`}
           >
-            <div>
+            <div className="h-full">
               <img
                 alt="mode"
                 src={currentAsset.img_url}
