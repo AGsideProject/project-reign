@@ -62,20 +62,22 @@ const AssetsDetailModal = ({
         {/* The Asset */}
         <div className="relative">
           <div
-            className={`bg-[#555555] shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw] ${aspectRatioClass}`}
+            className={`flex shadow-lg w-[70vw] h-[70vh] md:w-[70vw] md:h-[90vh] lg:w-[52vw] xl:w-[40vw] 2xl:h-[80vh] 2xl:w-[35vw] ${aspectRatioClass}`}
           >
+            <div>
+              <img
+                alt="mode"
+                src={currentAsset.img_url}
+                className="w-full h-full object-contain animate-fade-in"
+              />
+            </div>
             <button
               aria-label="Close"
               onClick={onClose}
-              className="absolute flex justify-center items-center rounded-full top-[-16px] right-[-13px] text-gray-300 hover:text-white text-xl h-7 w-7 bg-black pb-1"
+              className="flex justify-center items-center rounded-full text-gray-300 hover:text-white text-2xl h-3 w-7"
             >
               &times;
             </button>
-            <img
-              alt="mode"
-              src={currentAsset.img_url}
-              className="w-full h-full object-cover animate-fade-in"
-            />
           </div>
           {/* Indicator */}
           <p className="text-end text-[12px] text-[#CCCCCC] mt-2">{`${
