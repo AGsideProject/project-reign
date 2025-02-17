@@ -14,9 +14,9 @@ const LoadingSkeleton = () => {
           </div>
 
           {/* MODEL NAME SKELETON */}
-          <div className="flex items-center justify-center my-5">
+          {/* <div className="flex items-center justify-center my-5">
             <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse"></div>
-          </div>
+          </div> */}
         </div>
       ))}
     </section>

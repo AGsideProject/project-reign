@@ -2,6 +2,11 @@ import axios from "axios";
 import { MailCheck } from "lucide-react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import localFont from "next/font/local";
+
+const resothoExtralight = localFont({
+  src: "../../../public/fonts/ResothoExtralight-9YXJK.otf",
+});
 
 const FormBookModal = ({ isOpen, onClose, modelName }) => {
   const initform = {
@@ -81,11 +86,11 @@ const FormBookModal = ({ isOpen, onClose, modelName }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 ${resothoExtralight.className}`}>
       <div className="flex relative w-[95%] max-w-4xl max-h-[80vh] pt-6 bg-white shadow-lg pb-6">
         <button
           onClick={handleClose}
-          className="absolute flex justify-center items-center rounded-full top-[-16px] right-[-9px] text-gray-300 hover:text-white text-2xl h-7 w-7 bg-black pb-1"
+          className="absolute flex justify-center items-center rounded-full top-[-16px] right-[-9px] text-gray-300 hover:text-white text-2xl h-7 w-7 bg-black"
         >
           &times;
         </button>
