@@ -40,9 +40,9 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = `Name: ${formData.name}\nEmail: ${formData.email}`;
-    window.location.href = `mailto:${process.env.NEXT_PUBLIC_API_EMAIL_RECIPIENT ||
-      "aldo115marcelino@gmail.com"
-      }?subject=${formData.subject}&body=${body}\n${formData.message}`;
+    window.location.href = `mailto:${
+      process.env.NEXT_PUBLIC_API_EMAIL_RECIPIENT || "reignmodelsmgt@gmail.com"
+    }?subject=${formData.subject}&body=${body}\n${formData.message}`;
   };
 
   useEffect(() => {
@@ -86,7 +86,10 @@ const Footer = () => {
                   // href="https://www.instagram.com/reignmodelsmgt"
                   onClick={(e) => {
                     e.preventDefault();
-                    window.open("https://www.instagram.com/reignmodelsmgt", "_blank");
+                    window.open(
+                      "https://www.instagram.com/reignmodelsmgt",
+                      "_blank"
+                    );
                   }}
                 >
                   <Instagram />
@@ -220,8 +223,9 @@ const Footer = () => {
 
           {/* Floating Button */}
           <button
-            className={`md:hidden fixed z-40 bottom-6 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${isFix ? "bg-black text-white" : "bg-white text-black"
-              }`}
+            className={`md:hidden fixed z-40 bottom-6 right-6 font-bold py-3 px-6 shadow-lg text-sm transition-transform transform hover:scale-110 ${
+              isFix ? "bg-black text-white" : "bg-white text-black"
+            }`}
             onClick={() => setOpenModal(true)}
           >
             BOOK A SHOOT
