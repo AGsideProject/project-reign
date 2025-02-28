@@ -64,7 +64,9 @@ const ModelDetailComponent = ({ data }) => {
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
         <div>
-          <p className="font-semibold">{data.gender === 'male' ? "CHEST":'BUST'}</p>
+          <p className="font-semibold">
+            {data.gender === "male" ? "CHEST" : "BUST"}
+          </p>
         </div>
         <div>
           <p className="font-medium">{data.bust} CM</p>
@@ -99,7 +101,9 @@ const ModelDetailComponent = ({ data }) => {
           <p className="font-semibold">EYES</p>
         </div>
         <div>
-          <p className="first-letter:uppercase font-medium text-center">{data.eyes}</p>
+          <p className="first-letter:uppercase font-medium text-center">
+            {data.eyes}
+          </p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
 
@@ -107,7 +111,9 @@ const ModelDetailComponent = ({ data }) => {
           <p className="font-semibold">HAIR</p>
         </div>
         <div>
-          <p className="first-letter:uppercase font-medium text-center">{data.hair}</p>
+          <p className="first-letter:uppercase font-medium text-center">
+            {data.hair}
+          </p>
         </div>
         <div className="bg-black h-[0.5px] w-full col-span-2"></div>
       </div>
@@ -121,8 +127,9 @@ const ModelDetailComponent = ({ data }) => {
                 <div
                   key={`assets-type-${el}`}
                   onClick={() => handleTabChange(el)}
-                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${activeTab === el ? "border-black" : "border-white"
-                    }`}
+                  className={`pb-2 sm:pb-[14px] border-b-[1px] sm:border-b-2 px-[20px] cursor-pointer transition-all duration-500 ${
+                    activeTab === el ? "border-black" : "border-white"
+                  }`}
                 >
                   <p className="font-thin uppercase tracking-[.25em] text-xl text-center sm:font-normal">
                     {el}
@@ -141,19 +148,21 @@ const ModelDetailComponent = ({ data }) => {
             {photos.map((item, index) => (
               <div
                 key={`assets-${index}`}
-                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${item.orientation === "landscape"
-                  ? "md:col-span-2"
-                  : "md:col-span-1"
-                  }`}
+                className={`w-full bg-[#555555] flex justify-center items-center cursor-zoom-in ${
+                  item.orientation === "landscape"
+                    ? "md:col-span-2"
+                    : "md:col-span-1"
+                }`}
                 onClick={() => handleViewAsset(index)}
               >
                 <img
                   alt="mode"
-                  src={item.img_url}
-                  className={`w-full h-full ${item.orientation === "landscape"
-                    ? "aspect-[16/9]"
-                    : "aspect-[79/119]"
-                    } object-cover`}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.img_url}`}
+                  className={`w-full h-full ${
+                    item.orientation === "landscape"
+                      ? "aspect-[16/9]"
+                      : "aspect-[79/119]"
+                  } object-cover`}
                 />
               </div>
             ))}
@@ -165,10 +174,10 @@ const ModelDetailComponent = ({ data }) => {
               <div
                 key={`assets-${index}`}
                 className={`relative w-full bg-[#555555] flex justify-center items-center aspect-[3/4]`}
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   window.open(item.redirect, "_blank");
-              // }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   window.open(item.redirect, "_blank");
+                // }}
               >
                 <Image src={item.img_url} fill={true} objectFit="cover" />
                 {/* <div className="w-full absolute bottom-0 bg-white/50">

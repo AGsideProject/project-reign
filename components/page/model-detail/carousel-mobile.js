@@ -48,7 +48,7 @@ const CarouselAssets = ({
             <div className="max-h-[85vh] flex justify-center items-center">
               <div className="relative">
                 <img
-                  src={element.img_url}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${element.img_url}`}
                   alt={`assets-model-${index}`}
                   className="object-contain w-full h-full"
                 />

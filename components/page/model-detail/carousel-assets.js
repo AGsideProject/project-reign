@@ -90,7 +90,7 @@ const CarouselAssets = ({ data }) => {
           >
             <div className="flex justify-center items-center xl:h-[73vh]">
               <img
-                src={element.img_url}
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${element.img_url}`}
                 alt={`assets-model-${index}`}
                 className="object-cover w-full h-full"
               />

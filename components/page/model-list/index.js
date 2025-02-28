@@ -18,8 +18,7 @@ const butlerLightStencil = localFont({
 
 const butlerMedium = localFont({
   src: "../../../public/fonts/Butler_Medium.otf",
-})
-
+});
 
 const ModelListComponent = ({ modelGender }) => {
   const device = useDeviceType();
@@ -83,7 +82,9 @@ const ModelListComponent = ({ modelGender }) => {
     <React.Fragment>
       <section
         ref={ref}
-        className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-2"} md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 p-5 md:p-10 gap-5`}
+        className={`grid ${
+          device === "mobile" ? "grid-cols-1" : "grid-cols-2"
+        } md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 p-5 md:p-10 gap-5`}
       >
         {/* {listModel.map((item, index) => {
           return (
@@ -237,12 +238,16 @@ const ModelListComponent = ({ modelGender }) => {
                 />
 
                 <Image
-                  src={item.cover_img}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.cover_img}`}
                   alt="model name"
                   layout="fill"
                   objectFit="cover"
                   placeholder="blur"
-                  blurDataURL={item.cover_img}
+                  blurDataURL={
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.cover_img}` ||
+                    "data:image/png;base64,..."
+                  }
+                  unoptimized
                 />
 
                 <motion.div
@@ -262,24 +267,62 @@ const ModelListComponent = ({ modelGender }) => {
                   className={`absolute w-full h-full bg-black/70 top-0 text-black flex flex-col justify-start items-start opacity-90 ${resothoExtralight.className}`}
                 >
                   <div className="grid grid-cols-2 text-xs md:text-xs justify-items-start items-center gap-y-3 text-white ml-5 mt-5 w-[40%]">
-                    <div><p className="font-[1000]">HEIGHT</p></div>
-                    <div><p className="font-[100]">{item.hight} CM</p></div>
-                    <div><p className="font-[1000]">{item.gender === 'male' ? "CHEST":'BUST'}</p></div>
-                    <div><p className="font-[100]">{item.bust} CM</p></div>
-                    <div><p className="font-[1000]">WAIST</p></div>
-                    <div><p className="font-[100]">{item.waist} CM</p></div>
-                    <div><p className="font-[1000]">HIPS</p></div>
-                    <div><p className="font-[100]">{item.hips} CM</p></div>
-                    <div><p className="font-[1000]">SHOE</p></div>
-                    <div><p className="font-[100]">{item.shoe_size} US</p></div>
-                    <div><p className="font-[1000]">EYES</p></div>
-                    <div><p className="first-letter:uppercase font-[100]">{item.eyes}</p></div>
-                    <div><p className="font-[1000]">HAIR</p></div>
-                    <div><p className="first-letter:uppercase font-[100]">{item.hair}</p></div>
+                    <div>
+                      <p className="font-[1000]">HEIGHT</p>
+                    </div>
+                    <div>
+                      <p className="font-[100]">{item.hight} CM</p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">
+                        {item.gender === "male" ? "CHEST" : "BUST"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-[100]">{item.bust} CM</p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">WAIST</p>
+                    </div>
+                    <div>
+                      <p className="font-[100]">{item.waist} CM</p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">HIPS</p>
+                    </div>
+                    <div>
+                      <p className="font-[100]">{item.hips} CM</p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">SHOE</p>
+                    </div>
+                    <div>
+                      <p className="font-[100]">{item.shoe_size} US</p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">EYES</p>
+                    </div>
+                    <div>
+                      <p className="first-letter:uppercase font-[100]">
+                        {item.eyes}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-[1000]">HAIR</p>
+                    </div>
+                    <div>
+                      <p className="first-letter:uppercase font-[100]">
+                        {item.hair}
+                      </p>
+                    </div>
                   </div>
 
                   <div className="absolute bottom-0 mb-5 ml-5 ">
-                    <p className={`text-white text-2xl ${butlerMedium.className} uppercase`}>{item.name}</p>
+                    <p
+                      className={`text-white text-2xl ${butlerMedium.className} uppercase`}
+                    >
+                      {item.name}
+                    </p>
                   </div>
                 </motion.div>
               </div>
