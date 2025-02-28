@@ -2,6 +2,7 @@ const fetchData = async (endpoint, options = {}) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`,
     {
+      family: 4,
       cache: options.cache || "no-cache",
       method: options.method || "GET",
       headers: options.headers || {
