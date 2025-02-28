@@ -24,7 +24,9 @@ const Home = () => {
       );
       const result = await response.json();
 
-      setHomeImg(result.data.img_url);
+      setHomeImg(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}${result.data.img_url}`
+      );
       return result;
     } catch (error) {
       console.error(error);
@@ -41,7 +43,9 @@ const Home = () => {
           backgroundImage: `url('${homeImg}')`,
         }}
       >
-        <div className={`flex justify-between items-center py-8 px-6 ${resothoExtralight.className}`}>
+        <div
+          className={`flex justify-between items-center py-8 px-6 ${resothoExtralight.className}`}
+        >
           <div className={`flex items-center  md:gap-8 gap-4 `}>
             {["female", "male"].map((type, index) => (
               <Link
@@ -80,6 +84,7 @@ const Home = () => {
             width={460}
             height={32}
             priority
+            unoptimized
           />
         </div>
       </div>
