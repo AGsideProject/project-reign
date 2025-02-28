@@ -67,7 +67,7 @@ const AssetsDetailModal = ({
             <div className="h-full">
               <img
                 alt="mode"
-                src={currentAsset.img_url}
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${currentAsset.img_url}`}
                 className="w-full h-full object-contain animate-fade-in"
               />
             </div>
