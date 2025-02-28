@@ -179,7 +179,12 @@ const ModelDetailComponent = ({ data }) => {
                 //   window.open(item.redirect, "_blank");
                 // }}
               >
-                <Image src={item.img_url} fill={true} objectFit="cover" />
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.img_url}`}
+                  fill={true}
+                  objectFit="cover"
+                  unoptimized
+                />
                 {/* <div className="w-full absolute bottom-0 bg-white/50">
                   <div className="flex flex-row justify-center gap-5">
                     Likes : {item.likes > 0 ? item.likes : "hidden"}
