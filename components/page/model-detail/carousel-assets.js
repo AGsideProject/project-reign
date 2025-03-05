@@ -78,7 +78,7 @@ const CarouselAssets = ({ data }) => {
         onSlideChange={handleSwipe}
         loop={false}
         modules={[Pagination]}
-        className="w-[85vw] sm:w-[55vw]"
+        className="lg:w-[55vw] sm:w-[65vw] w-[85vw]"
       >
         {data.map((element, index) => (
           <SwiperSlide
@@ -88,7 +88,7 @@ const CarouselAssets = ({ data }) => {
               aspectRatio: "auto",
             }}
           >
-            <div className="flex justify-center items-center xl:h-[73vh]">
+            <div className="flex justify-center items-center h-[38vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] xl:h-[73vh]">
               <img
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${element.img_url}`}
                 alt={`assets-model-${index}`}
