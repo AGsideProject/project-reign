@@ -82,9 +82,8 @@ const ModelListComponent = ({ modelGender }) => {
     <React.Fragment>
       <section
         ref={ref}
-        className={`grid ${
-          device === "mobile" ? "grid-cols-1" : "grid-cols-2"
-        } md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 p-5 md:p-10 gap-5`}
+        className={`grid ${device === "mobile" ? "grid-cols-1" : "grid-cols-2"
+          } md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 p-5 md:p-10 gap-5`}
       >
         {/* {listModel.map((item, index) => {
           return (
@@ -214,7 +213,11 @@ const ModelListComponent = ({ modelGender }) => {
         {listModel.map((item, index) => {
           return (
             <motion.div
-              onClick={() => router.push(`/model/${item.slug}`)}
+              // onClick={() => router.push(`/model/${item.slug}`)}
+              onClick={(e) => {
+                e.preventDefault();
+                window.open(`/model/${item.slug}`, "_blank");
+              }}
               key={index}
               className="overflow-hidden"
               variants={{
